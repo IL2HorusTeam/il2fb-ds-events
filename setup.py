@@ -74,16 +74,16 @@ BUILD_TAG = (
   else ""
 )
 
-# REQUIREMENTS_DIR_PATH = __here__ / "requirements"
+REQUIREMENTS_DIR_PATH = __here__ / "requirements"
 
-# INSTALL_REQUIREMENTS, INSTALL_DEPENDENCIES = parse_requirements(
-#     file_path=(REQUIREMENTS_DIR_PATH / "dist.txt"),
-# )
+INSTALL_REQUIREMENTS, INSTALL_DEPENDENCIES = parse_requirements(
+  file_path=(REQUIREMENTS_DIR_PATH / "dist.txt"),
+)
 # SETUP_REQUIREMENTS, SETUP_DEPENDENCIES = parse_requirements(
-#     file_path=(REQUIREMENTS_DIR_PATH / "setup.txt"),
+#   file_path=(REQUIREMENTS_DIR_PATH / "setup.txt"),
 # )
 # TEST_REQUIREMENTS, TEST_DEPENDENCIES = parse_requirements(
-#     file_path=(REQUIREMENTS_DIR_PATH / "test.txt"),
+#   file_path=(REQUIREMENTS_DIR_PATH / "test.txt"),
 # )
 
 setup(
@@ -114,12 +114,12 @@ setup(
   ],
 
   python_requires=">=3.7",
-  # dependency_links=list(set(itertools.chain(
-  #   INSTALL_DEPENDENCIES,
-  #   SETUP_DEPENDENCIES,
-  #   TEST_DEPENDENCIES,
-  # ))),
-  # install_requires=INSTALL_REQUIREMENTS,
+  dependency_links=list(set(itertools.chain(
+    INSTALL_DEPENDENCIES,
+    # SETUP_DEPENDENCIES,
+    # TEST_DEPENDENCIES,
+  ))),
+  install_requires=INSTALL_REQUIREMENTS,
   # setup_requires=SETUP_REQUIREMENTS,
   # tests_require=TEST_REQUIREMENTS,
   # test_suite="tests",
