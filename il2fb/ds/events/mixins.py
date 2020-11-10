@@ -4,20 +4,24 @@ from typing import Any
 from typing import Container
 from typing import Dict
 from typing import Optional
-from typing import Text
 
-from .typing import SupportsText
+from .typing import SupportsString
+from .utils import export
 
 
+@export
 @dataclasses.dataclass(frozen=True)
 class VerboseDataclassMixin:
-  verbose_name: SupportsText = dataclasses.field(init=False)
-  help_text:    SupportsText = dataclasses.field(init=False)
+  # TODO: move to commons?
+  verbose_name: SupportsString = dataclasses.field(init=False)
+  help_text: Optional[SupportsString] = dataclasses.field(init=False, default=None)
 
 
+@export
 class PrimitiveDataclassMixin:
+  # TODO: move to commons?
 
-  def to_primitive(self, excludes: Optional[Container] = None) -> Dict[Text, Any]:
+  def to_primitive(self, excludes: Optional[Container] = None) -> Dict[str, Any]:
     return {
       key: self._value_to_primitive(
         value=getattr(self, key),
@@ -38,13 +42,13 @@ class PrimitiveDataclassMixin:
     if hasattr(value, "isoformat"):
       return value.isoformat()
 
-    if isinstance(value, SupportsText) and not isinstance(value, str):
+    if isinstance(value, SupportsString) and not isinstance(value, str):
       return str(value)
 
     return value
 
   @classmethod
-  def from_primitive(cls, value: Dict[Text, Any]) -> Any:
+  def from_primitive(cls, value: Dict[str, Any]) -> Any:
     kwargs = {
       key: cls._value_from_primitive(
         value=value[key],

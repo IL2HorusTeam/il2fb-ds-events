@@ -1,10 +1,13 @@
 from typing import Protocol
 from typing import runtime_checkable
-from typing import Text
+from typing import TypeVar
 
 
 @runtime_checkable
-class SupportsText(Protocol):
+class SupportsString(Protocol):
 
-  def __str__(self) -> Text:
+  def __str__(self) -> str:
     ...
+
+
+Event = TypeVar("Event")
