@@ -1,7 +1,12 @@
+import sys
+
 from dataclasses import dataclass
 from dataclasses import field
 
-from collections.abc import Container
+if sys.version_info < (3, 9):
+  from typing import Container
+else:
+  from collections.abc import Container
 
 from typing import Any
 from typing import ClassVar
