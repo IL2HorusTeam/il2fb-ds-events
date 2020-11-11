@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from dataclasses import field
 
 from typing import Any
+from typing import ClassVar
 from typing import Container
 from typing import Dict
 from typing import Optional
@@ -25,7 +26,7 @@ class EventBase(PrimitiveDataclassMixin):
 @dataclass(frozen=True)
 class Event(VerboseDataclassMixin, EventBase):
   data:     Any
-  category: str = field(init=False)  # Must be overriden by derived classes
+  category: ClassVar[str] = field(init=False)  # Must be overriden by derived classes
 
   @classproperty_readonly
   def name(cls) -> str:

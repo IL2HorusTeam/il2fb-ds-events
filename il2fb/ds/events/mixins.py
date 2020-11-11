@@ -1,6 +1,7 @@
 import dataclasses
 
 from typing import Any
+from typing import ClassVar
 from typing import Container
 from typing import Dict
 from typing import Optional
@@ -13,8 +14,13 @@ from .utils import export
 @dataclasses.dataclass(frozen=True)
 class VerboseDataclassMixin:
   # TODO: move to commons?
-  verbose_name: SupportsString = dataclasses.field(init=False)
-  help_text: Optional[SupportsString] = dataclasses.field(init=False, default=None)
+  verbose_name: ClassVar[SupportsString] = dataclasses.field(
+    init=False,
+  )
+  help_text: ClassVar[Optional[SupportsString]] = dataclasses.field(
+    init=False,
+    # default=None,
+  )
 
 
 @export
