@@ -24,7 +24,7 @@ class VerboseDataclassMixin:
   )
   help_text: ClassVar[Optional[SupportsString]] = dataclasses.field(
     init=False,
-    # default=None,
+    default=None,
   )
 
 

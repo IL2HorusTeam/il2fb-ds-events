@@ -1,7 +1,7 @@
 from typing import Type
 
+from .base import Event
 from .exceptions import EventRegistryLookupError
-from .typing import Event
 from .utils import export
 
 

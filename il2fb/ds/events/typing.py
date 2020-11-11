@@ -8,6 +8,3 @@ class SupportsString(Protocol):
 
   def __str__(self) -> str:
     ...
-
-
-Event = TypeVar("Event")
