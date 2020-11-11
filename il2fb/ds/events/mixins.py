@@ -39,7 +39,7 @@ class PrimitiveDataclassMixin:
     }
 
   @staticmethod
-  def _value_to_primitive(value: Any, excludes: Optional[Containerp[str] = None) -> Any:
+  def _value_to_primitive(value: Any, excludes: Optional[Container[str]] = None) -> Any:
     if value is None:
       return
 
