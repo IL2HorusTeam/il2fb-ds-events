@@ -26,4 +26,7 @@ def get_class_by_name(name: str) -> Type[Event]:
   :raises EventRegistryLookupError: if event with a given name is not registered
 
   """
-  return _event_classes_registry[name]
+  try:
+    return _event_classes_registry[name]
+  except KeyError as e:
+    raise EventRegistryLookupError from e
