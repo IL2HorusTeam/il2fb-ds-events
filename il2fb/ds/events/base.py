@@ -1,9 +1,10 @@
 from dataclasses import dataclass
 from dataclasses import field
 
+from collections.abc import Container
+
 from typing import Any
 from typing import ClassVar
-from typing import Container
 from typing import Dict
 from typing import Optional
 
@@ -32,7 +33,7 @@ class Event(VerboseDataclassMixin, EventBase):
   def name(cls) -> str:
     return cls.__name__
 
-  def to_primitive(self, excludes: Optional[Container] = None) -> Dict[str, Any]:
+  def to_primitive(self, excludes: Optional[Container[str]] = None) -> Dict[str, Any]:
     result = super().to_primitive(excludes)
     result['name'] = self.name
     return result

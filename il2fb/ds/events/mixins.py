@@ -1,8 +1,9 @@
 import dataclasses
 
+from collections.abc import Container
+
 from typing import Any
 from typing import ClassVar
-from typing import Container
 from typing import Dict
 from typing import Optional
 
@@ -27,7 +28,7 @@ class VerboseDataclassMixin:
 class PrimitiveDataclassMixin:
   # TODO: move to commons?
 
-  def to_primitive(self, excludes: Optional[Container] = None) -> Dict[str, Any]:
+  def to_primitive(self, excludes: Optional[Container[str]] = None) -> Dict[str, Any]:
     return {
       key: self._value_to_primitive(
         value=getattr(self, key),
@@ -38,7 +39,7 @@ class PrimitiveDataclassMixin:
     }
 
   @staticmethod
-  def _value_to_primitive(value: Any, excludes: Optional[Container] = None) -> Any:
+  def _value_to_primitive(value: Any, excludes: Optional[Containerp[str] = None) -> Any:
     if value is None:
       return
 
