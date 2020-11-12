@@ -5,7 +5,7 @@ from .base import Event
 from .mixins import PrimitiveDataclassMixin
 from .registry import register
 from .utils import export
-from .translations import gettext_lazy as _
+from ._translations import gettext_lazy as _
 
 
 @export
