@@ -2,7 +2,8 @@ from typing import Type
 
 from .base import Event
 from .exceptions import EventRegistryLookupError
-from .utils import export
+
+from ._utils import export
 
 
 _event_classes_registry = dict()

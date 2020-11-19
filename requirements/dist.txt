@@ -1,1 +1,3 @@
-verboselib>=1.0,<1.1
+verboselib>=1.1,<1.2
+
+https://github.com/IL2HorusTeam/il2fb-commons/tarball/master#egg=il2fb-commons

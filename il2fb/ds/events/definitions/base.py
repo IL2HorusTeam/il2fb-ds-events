@@ -1,30 +1,31 @@
 import sys
 
+if sys.version_info >= (3, 9):
+  from collections.abc import Container
+
+  Dict = dict
+
+else:
+  from typing import Container
+  from typing import Dict
+
 from dataclasses import dataclass
 from dataclasses import field
 
-if sys.version_info < (3, 9):
-  from typing import Container
-else:
-  from collections.abc import Container
-
 from typing import Any
 from typing import ClassVar
-from typing import Dict
 from typing import Optional
 
-from .lang import classproperty_readonly
+from il2fb.commons.structures import PrimitiveDataclassMixin
+from il2fb.commons.structures import VerboseDataclassMixin
 
-from .mixins import PrimitiveDataclassMixin
-from .mixins import VerboseDataclassMixin
-
-from .utils import export
+from ._lang import classproperty_readonly
+from ._utils import export
 
 
 @export
 @dataclass(frozen=True)
 class EventBase(PrimitiveDataclassMixin):
-  # TODO: move to commons?
   ...
 
 
@@ -38,7 +39,13 @@ class Event(VerboseDataclassMixin, EventBase):
   def name(cls) -> str:
     return cls.__name__
 
-  def to_primitive(self, excludes: Optional[Container[str]] = None) -> Dict[str, Any]:
-    result = super().to_primitive(excludes)
+  def to_primitive(
+    self,
+    excludes: Optional[Container[str]] = None,
+    *args,
+    **kwargs
+  ) -> Dict[str, Any]:
+
+    result = super().to_primitive(excludes=excludes, *args, **kwargs)
     result['name'] = self.name
     return result

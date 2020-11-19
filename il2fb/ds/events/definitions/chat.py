@@ -1,22 +1,24 @@
 from dataclasses import dataclass
 
-from .actors import HumanActor
+from il2fb.commons.actors import HumanActor
+from il2fb.commons.structures import PrimitiveDataclassMixin
+
 from .base import Event
-from .mixins import PrimitiveDataclassMixin
 from .registry import register
-from .utils import export
+
+from ._utils import export
 from ._translations import gettext_lazy as _
 
 
 @export
 @dataclass(frozen=True)
-class SimpleChatMessage(PrimitiveDataclassMixin):
+class ChatMessage(PrimitiveDataclassMixin):
   msg: str
 
 
 @export
 @dataclass(frozen=True)
-class HumanChatMessage(SimpleChatMessage):
+class HumanChatMessage(ChatMessage):
   actor: HumanActor
 
 
@@ -24,13 +26,13 @@ class HumanChatMessage(SimpleChatMessage):
 @dataclass(frozen=True)
 class ChatMessageEvent(Event):
   category = "chat"
+  data: ChatMessage
 
 
 @export
 @register
 @dataclass(frozen=True)
 class ServerChatMessageEvent(ChatMessageEvent):
-  data: SimpleChatMessage
   verbose_name = _("Chat message from server")
 
 
@@ -38,7 +40,6 @@ class ServerChatMessageEvent(ChatMessageEvent):
 @register
 @dataclass(frozen=True)
 class SystemChatMessageEvent(ChatMessageEvent):
-  data: SimpleChatMessage
   verbose_name = _("Chat message from system")
 
 

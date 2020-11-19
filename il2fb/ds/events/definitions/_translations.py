@@ -11,5 +11,9 @@ translations = Translations(
   locale_dir_path=(__here__ / "locale"),
 )
 
-gettext      = translations.gettext
-gettext_lazy = translations.gettext_lazy
+
+gettext       = translations.gettext
+gettext_lazy  = translations.gettext_lazy
+
+pgettext      = translations.pgettext
+pgettext_lazy = translations.pgettext_lazy
