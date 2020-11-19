@@ -35,8 +35,7 @@ class EventRegistry:
       raise EventRegistryLookupError from e
 
 
-# default registry
-registry = EventRegistry()
+default_registry = EventRegistry()
 
-register = registry.register
-get_class_by_name = registry.get_class_by_name
+register = default_registry.register
+get_class_by_name = default_registry.get_class_by_name
