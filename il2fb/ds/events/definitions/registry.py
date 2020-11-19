@@ -7,7 +7,7 @@ from ._utils import export
 
 
 @export
-class EventsRegistry:
+class EventRegistry:
 
   def __init__(self):
     self._data = dict()
@@ -36,7 +36,7 @@ class EventsRegistry:
 
 
 # default registry
-registry = EventsRegistry()
+registry = EventRegistry()
 
 register = registry.register
 get_class_by_name = registry.get_class_by_name
