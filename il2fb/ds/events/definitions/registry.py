@@ -6,28 +6,37 @@ from .exceptions import EventRegistryLookupError
 from ._utils import export
 
 
-_event_classes_registry = dict()
-
-
 @export
-def register(cls: Type[Event]) -> None:
-  """
-  Decorator for final event classes.
+class EventsRegistry:
 
-  """
-  _event_classes_registry[cls.__name__] = cls
-  return cls
+  def __init__(self):
+    self._data = dict()
+
+  def register(self, cls: Type[Event]) -> None:
+    """
+    Register event class.
+
+    Can be used as decorator.
+
+    """
+    self._data[cls.__name__] = cls
+    return cls
+
+  def get_class_by_name(self, name: str) -> Type[Event]:
+    """
+    Get event class by event's name.
+
+    :raises EventRegistryLookupError: if event with a given name is not registered
+
+    """
+    try:
+      return self._data[name]
+    except KeyError as e:
+      raise EventRegistryLookupError from e
 
 
-@export
-def get_class_by_name(name: str) -> Type[Event]:
-  """
-  Get event class by event's name.
+# default registry
+registry = EventsRegistry()
 
-  :raises EventRegistryLookupError: if event with a given name is not registered
-
-  """
-  try:
-    return _event_classes_registry[name]
-  except KeyError as e:
-    raise EventRegistryLookupError from e
+register = registry.register
+get_class_by_name = registry.get_class_by_name
