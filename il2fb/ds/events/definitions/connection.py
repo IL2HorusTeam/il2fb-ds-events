@@ -28,8 +28,8 @@ class ChannelInfo(PrimitiveDataclassMixin):
   __slots__ = ["channel_no", "address", "port", ]
 
   channel_no: int
-  address: str
-  port:    int
+  address:    str
+  port:       int
 
 
 @export
