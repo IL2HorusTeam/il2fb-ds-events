@@ -32,6 +32,8 @@ class EventBase(PrimitiveDataclassMixin):
 @export
 @dataclass(frozen=True)
 class Event(VerboseDataclassMixin, EventBase):
+  __slots__ = ["data", ]
+
   data:     Any
   category: ClassVar[str] = field(init=False)  # Must be overriden by derived classes
 

@@ -13,12 +13,16 @@ from ._translations import gettext_lazy as _
 @export
 @dataclass(frozen=True)
 class ChatMessage(PrimitiveDataclassMixin):
+  __slots__ = ["msg", ]
+
   msg: str
 
 
 @export
 @dataclass(frozen=True)
 class HumanChatMessage(ChatMessage):
+  __slots__ = ChatMessage.__slots__ + ["msg", ]
+
   actor: HumanActor
 
 
@@ -47,5 +51,5 @@ class SystemChatMessageEvent(ChatMessageEvent):
 @register
 @dataclass(frozen=True)
 class HumanChatMessageEvent(ChatMessageEvent):
-  data: HumanChatMessage
   verbose_name = _("Chat message from human")
+  data: HumanChatMessage
