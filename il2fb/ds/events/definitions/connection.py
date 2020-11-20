@@ -15,6 +15,7 @@ from il2fb.commons.actors import HumanActor
 from il2fb.commons.structures import PrimitiveDataclassMixin
 
 from .base import Event
+from .mixins import TimeMixin
 from .registry import register
 
 from ._utils import export
@@ -48,6 +49,14 @@ class HumanConnectionEstablishedInfo(PrimitiveDataclassMixin):
   actor:        HumanActor
 
 
+@export
+@dataclass(frozen=True)
+class HumanConnectionEstablishedLightInfo(TimeMixin, PrimitiveDataclassMixin):
+  __slots__ = ["time", "actor", ]
+
+  actor: HumanActor
+
+
 HumanConnectionLostInfo = TypeVar("HumanConnectionLostInfo")
 
 
@@ -70,6 +79,13 @@ class HumanConnectionLostInfo(PrimitiveDataclassMixin):
       reason=value['reason'],
     )
 
+
+@export
+@dataclass(frozen=True)
+class HumanConnectionLostLightInfo(TimeMixin, PrimitiveDataclassMixin):
+  __slots__ = ["time", "actor", ]
+
+  actor: HumanActor
 
 
 @export
@@ -97,6 +113,22 @@ class HumanConnectionEstablishedEvent(HumanConnectionEvent):
 @export
 @register
 @dataclass(frozen=True)
+class HumanConnectionEstablishedLightEvent(HumanConnectionEvent):
+  verbose_name = _("Human connection with server established (light)")
+  data: HumanConnectionEstablishedLightInfo
+
+
+@export
+@register
+@dataclass(frozen=True)
 class HumanConnectionLostEvent(HumanConnectionEvent):
   verbose_name = _("Human connection with server lost")
   data: HumanConnectionLostInfo
+
+
+@export
+@register
+@dataclass(frozen=True)
+class HumanConnectionLostLightEvent(HumanConnectionEvent):
+  verbose_name = _("Human connection with server lost (light)")
+  data: HumanConnectionLostLightInfo

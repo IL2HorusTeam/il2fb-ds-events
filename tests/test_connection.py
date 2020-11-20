@@ -1,3 +1,4 @@
+import datetime
 import unittest
 
 from il2fb.commons.actors import HumanActor
@@ -7,12 +8,16 @@ from il2fb.ds.events.definitions.base import Event
 from il2fb.ds.events.definitions.connection import ChannelInfo
 from il2fb.ds.events.definitions.connection import HumanConnectionStartedInfo
 from il2fb.ds.events.definitions.connection import HumanConnectionEstablishedInfo
+from il2fb.ds.events.definitions.connection import HumanConnectionEstablishedLightInfo
 from il2fb.ds.events.definitions.connection import HumanConnectionLostInfo
+from il2fb.ds.events.definitions.connection import HumanConnectionLostLightInfo
 
 from il2fb.ds.events.definitions.connection import HumanConnectionEvent
 from il2fb.ds.events.definitions.connection import HumanConnectionStartedEvent
 from il2fb.ds.events.definitions.connection import HumanConnectionEstablishedEvent
+from il2fb.ds.events.definitions.connection import HumanConnectionEstablishedLightEvent
 from il2fb.ds.events.definitions.connection import HumanConnectionLostEvent
+from il2fb.ds.events.definitions.connection import HumanConnectionLostLightEvent
 
 from il2fb.ds.events.definitions import registry
 
@@ -140,6 +145,51 @@ class HumanConnectionEstablishedEventTestCase(unittest.TestCase):
     )
 
 
+class HumanConnectionEstablishedLightEventTestCase(unittest.TestCase):
+
+  def test_derives_from_HumanConnectionEvent(self):
+    self.assertTrue(issubclass(
+      HumanConnectionEstablishedLightEvent,
+      HumanConnectionEvent,
+    ))
+
+  def test_is_registered(self):
+    self.assertEqual(
+      registry.get_class_by_name("HumanConnectionEstablishedLightEvent"),
+      HumanConnectionEstablishedLightEvent,
+    )
+
+  def test_to_primitive(self):
+    testee = HumanConnectionEstablishedLightEvent(
+      HumanConnectionEstablishedLightInfo(
+        actor=HumanActor("TheUser"),
+        time=datetime.time(23, 45, 59),
+      ),
+    )
+    self.assertEqual(testee.to_primitive(), {
+      'category': 'connection',
+      'name': 'HumanConnectionEstablishedLightEvent',
+      'verbose_name': 'Human connection with server established (light)',
+      'help_text': None,
+      'data': {
+        'actor': {'callsign': 'TheUser'},
+        'time': '23:45:59',
+      },
+    })
+
+  def test_from_primitive(self):
+    testee = HumanConnectionEstablishedLightEvent(
+      HumanConnectionEstablishedLightInfo(
+        actor=HumanActor("TheUser"),
+        time=datetime.time(23, 45, 59),
+      ),
+    )
+    self.assertEqual(
+      testee,
+      HumanConnectionEstablishedLightEvent.from_primitive(testee.to_primitive()),
+    )
+
+
 class HumanConnectionLostEventTestCase(unittest.TestCase):
 
   def test_derives_from_HumanConnectionEvent(self):
@@ -208,4 +258,49 @@ class HumanConnectionLostEventTestCase(unittest.TestCase):
     self.assertEqual(
       testee,
       HumanConnectionLostEvent.from_primitive(testee.to_primitive()),
+    )
+
+
+class HumanConnectionLostLightEventTestCase(unittest.TestCase):
+
+  def test_derives_from_HumanConnectionEvent(self):
+    self.assertTrue(issubclass(
+      HumanConnectionLostLightEvent,
+      HumanConnectionEvent,
+    ))
+
+  def test_is_registered(self):
+    self.assertEqual(
+      registry.get_class_by_name("HumanConnectionLostLightEvent"),
+      HumanConnectionLostLightEvent,
+    )
+
+  def test_to_primitive(self):
+    testee = HumanConnectionLostLightEvent(
+      HumanConnectionLostLightInfo(
+        actor=HumanActor("TheUser"),
+        time=datetime.time(23, 45, 59),
+      ),
+    )
+    self.assertEqual(testee.to_primitive(), {
+      'category': 'connection',
+      'name': 'HumanConnectionLostLightEvent',
+      'verbose_name': 'Human connection with server lost (light)',
+      'help_text': None,
+      'data': {
+        'actor': {'callsign': 'TheUser'},
+        'time': '23:45:59',
+      },
+    })
+
+  def test_from_primitive(self):
+    testee = HumanConnectionLostLightEvent(
+      HumanConnectionLostLightInfo(
+        actor=HumanActor("TheUser"),
+        time=datetime.time(23, 45, 59),
+      ),
+    )
+    self.assertEqual(
+      testee,
+      HumanConnectionLostLightEvent.from_primitive(testee.to_primitive()),
     )
