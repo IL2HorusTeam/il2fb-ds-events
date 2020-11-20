@@ -19,7 +19,7 @@ class EventRegistry:
     Can be used as decorator.
 
     """
-    self._data[cls.__name__] = cls
+    self._data[cls.name] = cls
     return cls
 
   def get_class_by_name(self, name: str) -> Type[Event]:
