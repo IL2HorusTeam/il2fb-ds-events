@@ -35,7 +35,7 @@ class HumanConnectionStartedEventTestCase(unittest.TestCase):
         ChannelInfo(
           address="127.0.0.1",
           port=21000,
-          channel=1,
+          channel_no=1,
         ),
       ),
     )
@@ -46,7 +46,7 @@ class HumanConnectionStartedEventTestCase(unittest.TestCase):
       'help_text': None,
       'data': {
         'channel_info': {
-          'channel': 1,
+          'channel_no': 1,
           'address': '127.0.0.1',
           'port': 21000,
         },
@@ -59,7 +59,7 @@ class HumanConnectionStartedEventTestCase(unittest.TestCase):
         ChannelInfo(
           address="127.0.0.1",
           port=21000,
-          channel=1,
+          channel_no=1,
         ),
       ),
     )
@@ -89,7 +89,7 @@ class HumanConnectionEstablishedEventTestCase(unittest.TestCase):
         channel_info=ChannelInfo(
           address="127.0.0.1",
           port=21000,
-          channel=1,
+          channel_no=1,
         ),
         actor=HumanActor(
           callsign="TheUser",
@@ -103,7 +103,7 @@ class HumanConnectionEstablishedEventTestCase(unittest.TestCase):
       'help_text': None,
       'data': {
         'channel_info': {
-          'channel': 1,
+          'channel_no': 1,
           'address': '127.0.0.1',
           'port': 21000,
         },
@@ -119,7 +119,7 @@ class HumanConnectionEstablishedEventTestCase(unittest.TestCase):
         channel_info=ChannelInfo(
           address="127.0.0.1",
           port=21000,
-          channel=1,
+          channel_no=1,
         ),
         actor=HumanActor(
           callsign="TheUser",
@@ -152,7 +152,7 @@ class HumanConnectionLostEventTestCase(unittest.TestCase):
         channel_info=ChannelInfo(
           address="127.0.0.1",
           port=21000,
-          channel=1,
+          channel_no=1,
         ),
         reason="You have been kicked from the server.",
       ),
@@ -164,7 +164,7 @@ class HumanConnectionLostEventTestCase(unittest.TestCase):
       'help_text': None,
       'data': {
         'channel_info': {
-          'channel': 1,
+          'channel_no': 1,
           'address': '127.0.0.1',
           'port': 21000,
         },
@@ -178,7 +178,7 @@ class HumanConnectionLostEventTestCase(unittest.TestCase):
         channel_info=ChannelInfo(
           address="127.0.0.1",
           port=21000,
-          channel=1,
+          channel_no=1,
         ),
         reason=None,
       ),
@@ -192,7 +192,7 @@ class HumanConnectionLostEventTestCase(unittest.TestCase):
         channel_info=ChannelInfo(
           address="127.0.0.1",
           port=21000,
-          channel=1,
+          channel_no=1,
         ),
         reason="You have been kicked from the server.",
       ),

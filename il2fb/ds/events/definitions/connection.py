@@ -24,9 +24,9 @@ from ._translations import gettext_lazy as _
 @export
 @dataclass(frozen=True)
 class ChannelInfo(PrimitiveDataclassMixin):
-  __slots__ = ["channel", "address", "port", ]
+  __slots__ = ["channel_no", "address", "port", ]
 
-  channel: int
+  channel_no: int
   address: str
   port:    int
 
