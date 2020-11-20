@@ -10,7 +10,7 @@ from il2fb.ds.events.definitions import registry
 
 class CheatingDetectedEventTestCase(unittest.TestCase):
 
-  def test_derives_from_event(self):
+  def test_derives_from_Event(self):
     self.assertTrue(issubclass(CheatingDetectedEvent, Event))
 
   def test_is_registered(self):

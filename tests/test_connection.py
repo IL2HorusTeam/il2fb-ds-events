@@ -2,6 +2,8 @@ import unittest
 
 from il2fb.commons.actors import HumanActor
 
+from il2fb.ds.events.definitions.base import Event
+
 from il2fb.ds.events.definitions.connection import ChannelInfo
 from il2fb.ds.events.definitions.connection import HumanConnectionStartedInfo
 from il2fb.ds.events.definitions.connection import HumanConnectionEstablishedInfo
@@ -13,6 +15,12 @@ from il2fb.ds.events.definitions.connection import HumanConnectionEstablishedEve
 from il2fb.ds.events.definitions.connection import HumanConnectionLostEvent
 
 from il2fb.ds.events.definitions import registry
+
+
+class HumanConnectionEventTestCase(unittest.TestCase):
+
+  def test_derives_from_Event(self):
+    self.assertTrue(issubclass(HumanConnectionEvent, Event))
 
 
 class HumanConnectionStartedEventTestCase(unittest.TestCase):

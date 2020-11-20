@@ -2,6 +2,8 @@ import unittest
 
 from il2fb.commons.actors import HumanActor
 
+from il2fb.ds.events.definitions.base import Event
+
 from il2fb.ds.events.definitions.chat import ChatMessage
 from il2fb.ds.events.definitions.chat import HumanChatMessage
 
@@ -11,6 +13,12 @@ from il2fb.ds.events.definitions.chat import SystemChatMessageEvent
 from il2fb.ds.events.definitions.chat import HumanChatMessageEvent
 
 from il2fb.ds.events.definitions import registry
+
+
+class ChatMessageEventTestCase(unittest.TestCase):
+
+  def test_derives_from_Event(self):
+    self.assertTrue(issubclass(ChatMessageEvent, Event))
 
 
 class ServerChatMessageEventTestCase(unittest.TestCase):
