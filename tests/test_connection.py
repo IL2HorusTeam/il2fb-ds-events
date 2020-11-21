@@ -290,6 +290,22 @@ class HumanConnectionLostEventTestCase(unittest.TestCase):
       HumanConnectionLostEvent.from_primitive(testee.to_primitive()),
     )
 
+  def test_from_primitive_no_reason(self):
+    testee = HumanConnectionLostEvent(
+      HumanConnectionLostInfo(
+        channel_info=ChannelInfo(
+          address="127.0.0.1",
+          port=21000,
+          channel_no=1,
+        ),
+        reason=None,
+      ),
+    )
+    self.assertEqual(
+      testee,
+      HumanConnectionLostEvent.from_primitive(testee.to_primitive()),
+    )
+
 
 class HumanConnectionLostLightEventTestCase(unittest.TestCase):
 
