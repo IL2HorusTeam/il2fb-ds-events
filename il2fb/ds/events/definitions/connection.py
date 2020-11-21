@@ -40,6 +40,29 @@ class HumanConnectionStartedInfo(PrimitiveDataclassMixin):
   channel_no: int
 
 
+HumanConnectionFailedInfo = TypeVar("HumanConnectionFailedInfo")
+
+
+@export
+@dataclass(frozen=True)
+class HumanConnectionFailedInfo(PrimitiveDataclassMixin):
+  __slots__ = ["address", "reason", ]
+
+  address: ConnectionAddress
+  reason:  Optional[str]
+
+  @classmethod
+  def from_primitive(cls, value: Dict[str, Any], *args, **kwargs) -> HumanConnectionFailedInfo:
+    """
+    Override base method to handle 'Optional' fields.
+
+    """
+    return cls(
+      address=ConnectionAddress.from_primitive(value['address']),
+      reason=value['reason'],
+    )
+
+
 HumanConnectionEstablishedInfo = TypeVar("HumanConnectionEstablishedInfo")
 
 
@@ -122,6 +145,14 @@ class HumanConnectionEvent(Event):
 class HumanConnectionStartedEvent(HumanConnectionEvent):
   verbose_name = _("Human connection with server started")
   data: HumanConnectionStartedInfo
+
+
+@export
+@register
+@dataclass(frozen=True)
+class HumanConnectionFailedEvent(HumanConnectionEvent):
+  verbose_name = _("Human connection with server failed")
+  data: HumanConnectionFailedInfo
 
 
 @export

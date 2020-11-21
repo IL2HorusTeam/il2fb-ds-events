@@ -8,6 +8,7 @@ from il2fb.ds.events.definitions.base import Event
 from il2fb.ds.events.definitions.connection import ConnectionAddress
 
 from il2fb.ds.events.definitions.connection import HumanConnectionStartedInfo
+from il2fb.ds.events.definitions.connection import HumanConnectionFailedInfo
 from il2fb.ds.events.definitions.connection import HumanConnectionEstablishedInfo
 from il2fb.ds.events.definitions.connection import HumanConnectionEstablishedLightInfo
 from il2fb.ds.events.definitions.connection import HumanConnectionLostInfo
@@ -15,6 +16,7 @@ from il2fb.ds.events.definitions.connection import HumanConnectionLostLightInfo
 
 from il2fb.ds.events.definitions.connection import HumanConnectionEvent
 from il2fb.ds.events.definitions.connection import HumanConnectionStartedEvent
+from il2fb.ds.events.definitions.connection import HumanConnectionFailedEvent
 from il2fb.ds.events.definitions.connection import HumanConnectionEstablishedEvent
 from il2fb.ds.events.definitions.connection import HumanConnectionEstablishedLightEvent
 from il2fb.ds.events.definitions.connection import HumanConnectionLostEvent
@@ -71,6 +73,73 @@ class HumanConnectionStartedEventTestCase(unittest.TestCase):
     self.assertEqual(
       testee,
       HumanConnectionStartedEvent.from_primitive(testee.to_primitive()),
+    )
+
+
+class HumanConnectionFailedEventTestCase(unittest.TestCase):
+
+  def test_derives_from_HumanConnectionEvent(self):
+    self.assertTrue(issubclass(
+      HumanConnectionFailedEvent,
+      HumanConnectionEvent,
+    ))
+
+  def test_is_registered(self):
+    self.assertEqual(
+      registry.get_class_by_name("HumanConnectionFailedEvent"),
+      HumanConnectionFailedEvent,
+    )
+
+  def test_to_primitive(self):
+    testee = HumanConnectionFailedEvent(
+      HumanConnectionFailedInfo(
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        reason="Timeout.",
+      ),
+    )
+    self.assertEqual(testee.to_primitive(), {
+      'category': 'connection',
+      'name': 'HumanConnectionFailedEvent',
+      'verbose_name': 'Human connection with server failed',
+      'help_text': None,
+      'data': {
+        'address': {'host': '127.0.0.1', 'port': 21000},
+        'reason': "Timeout.",
+      },
+    })
+
+  def test_to_primitive_no_reason(self):
+    testee = HumanConnectionFailedEvent(
+      HumanConnectionFailedInfo(
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        reason=None,
+      ),
+    )
+    primitive = testee.to_primitive()
+    self.assertIsNone(primitive['data']['reason'])
+
+  def test_from_primitive(self):
+    testee = HumanConnectionFailedEvent(
+      HumanConnectionFailedInfo(
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        reason="Timeout.",
+      ),
+    )
+    self.assertEqual(
+      testee,
+      HumanConnectionFailedEvent.from_primitive(testee.to_primitive()),
+    )
+
+  def test_from_primitive_no_reason(self):
+    testee = HumanConnectionFailedEvent(
+      HumanConnectionFailedInfo(
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        reason=None,
+      ),
+    )
+    self.assertEqual(
+      testee,
+      HumanConnectionFailedEvent.from_primitive(testee.to_primitive()),
     )
 
 
