@@ -5,7 +5,8 @@ from il2fb.commons.actors import HumanActor
 
 from il2fb.ds.events.definitions.base import Event
 
-from il2fb.ds.events.definitions.connection import ChannelInfo
+from il2fb.ds.events.definitions.connection import ConnectionAddress
+
 from il2fb.ds.events.definitions.connection import HumanConnectionStartedInfo
 from il2fb.ds.events.definitions.connection import HumanConnectionEstablishedInfo
 from il2fb.ds.events.definitions.connection import HumanConnectionEstablishedLightInfo
@@ -45,11 +46,8 @@ class HumanConnectionStartedEventTestCase(unittest.TestCase):
   def test_to_primitive(self):
     testee = HumanConnectionStartedEvent(
       HumanConnectionStartedInfo(
-        ChannelInfo(
-          address="127.0.0.1",
-          port=21000,
-          channel_no=1,
-        ),
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        channel_no=1,
       ),
     )
     self.assertEqual(testee.to_primitive(), {
@@ -58,22 +56,16 @@ class HumanConnectionStartedEventTestCase(unittest.TestCase):
       'verbose_name': 'Human connection with server started',
       'help_text': None,
       'data': {
-        'channel_info': {
-          'channel_no': 1,
-          'address': '127.0.0.1',
-          'port': 21000,
-        },
+        'address': {'host': '127.0.0.1', 'port': 21000},
+        'channel_no': 1,
       },
     })
 
   def test_from_primitive(self):
     testee = HumanConnectionStartedEvent(
       HumanConnectionStartedInfo(
-        ChannelInfo(
-          address="127.0.0.1",
-          port=21000,
-          channel_no=1,
-        ),
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        channel_no=1,
       ),
     )
     self.assertEqual(
@@ -99,11 +91,8 @@ class HumanConnectionEstablishedEventTestCase(unittest.TestCase):
   def test_to_primitive(self):
     testee = HumanConnectionEstablishedEvent(
       HumanConnectionEstablishedInfo(
-        channel_info=ChannelInfo(
-          address="127.0.0.1",
-          port=21000,
-          channel_no=1,
-        ),
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        channel_no=1,
         actor=HumanActor(
           callsign="TheUser",
         ),
@@ -115,11 +104,8 @@ class HumanConnectionEstablishedEventTestCase(unittest.TestCase):
       'verbose_name': 'Human connection with server established',
       'help_text': None,
       'data': {
-        'channel_info': {
-          'channel_no': 1,
-          'address': '127.0.0.1',
-          'port': 21000,
-        },
+        'address': {'host': '127.0.0.1', 'port': 21000},
+        'channel_no': 1,
         'actor': {
           'callsign': 'TheUser',
         },
@@ -129,11 +115,8 @@ class HumanConnectionEstablishedEventTestCase(unittest.TestCase):
   def test_to_primitive_no_actor(self):
     testee = HumanConnectionEstablishedEvent(
       HumanConnectionEstablishedInfo(
-        channel_info=ChannelInfo(
-          address="127.0.0.1",
-          port=21000,
-          channel_no=1,
-        ),
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        channel_no=1,
         actor=None,
       ),
     )
@@ -143,11 +126,8 @@ class HumanConnectionEstablishedEventTestCase(unittest.TestCase):
   def test_from_primitive(self):
     testee = HumanConnectionEstablishedEvent(
       HumanConnectionEstablishedInfo(
-        channel_info=ChannelInfo(
-          address="127.0.0.1",
-          port=21000,
-          channel_no=1,
-        ),
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        channel_no=1,
         actor=HumanActor(
           callsign="TheUser",
         ),
@@ -161,11 +141,8 @@ class HumanConnectionEstablishedEventTestCase(unittest.TestCase):
   def test_from_primitive_no_actor(self):
     testee = HumanConnectionEstablishedEvent(
       HumanConnectionEstablishedInfo(
-        channel_info=ChannelInfo(
-          address="127.0.0.1",
-          port=21000,
-          channel_no=1,
-        ),
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        channel_no=1,
         actor=None,
       ),
     )
@@ -237,11 +214,8 @@ class HumanConnectionLostEventTestCase(unittest.TestCase):
   def test_to_primitive(self):
     testee = HumanConnectionLostEvent(
       HumanConnectionLostInfo(
-        channel_info=ChannelInfo(
-          address="127.0.0.1",
-          port=21000,
-          channel_no=1,
-        ),
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        channel_no=1,
         reason="You have been kicked from the server.",
       ),
     )
@@ -251,11 +225,8 @@ class HumanConnectionLostEventTestCase(unittest.TestCase):
       'verbose_name': 'Human connection with server lost',
       'help_text': None,
       'data': {
-        'channel_info': {
-          'channel_no': 1,
-          'address': '127.0.0.1',
-          'port': 21000,
-        },
+        'address': {'host': '127.0.0.1', 'port': 21000},
+        'channel_no': 1,
         'reason': "You have been kicked from the server.",
       },
     })
@@ -263,11 +234,8 @@ class HumanConnectionLostEventTestCase(unittest.TestCase):
   def test_to_primitive_no_reason(self):
     testee = HumanConnectionLostEvent(
       HumanConnectionLostInfo(
-        channel_info=ChannelInfo(
-          address="127.0.0.1",
-          port=21000,
-          channel_no=1,
-        ),
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        channel_no=1,
         reason=None,
       ),
     )
@@ -277,11 +245,8 @@ class HumanConnectionLostEventTestCase(unittest.TestCase):
   def test_from_primitive(self):
     testee = HumanConnectionLostEvent(
       HumanConnectionLostInfo(
-        channel_info=ChannelInfo(
-          address="127.0.0.1",
-          port=21000,
-          channel_no=1,
-        ),
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        channel_no=1,
         reason="You have been kicked from the server.",
       ),
     )
@@ -293,11 +258,8 @@ class HumanConnectionLostEventTestCase(unittest.TestCase):
   def test_from_primitive_no_reason(self):
     testee = HumanConnectionLostEvent(
       HumanConnectionLostInfo(
-        channel_info=ChannelInfo(
-          address="127.0.0.1",
-          port=21000,
-          channel_no=1,
-        ),
+        address=ConnectionAddress(host="127.0.0.1", port=21000),
+        channel_no=1,
         reason=None,
       ),
     )

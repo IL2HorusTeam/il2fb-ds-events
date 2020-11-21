@@ -24,20 +24,20 @@ from ._translations import gettext_lazy as _
 
 @export
 @dataclass(frozen=True)
-class ChannelInfo(PrimitiveDataclassMixin):
-  __slots__ = ["channel_no", "address", "port", ]
+class ConnectionAddress(PrimitiveDataclassMixin):
+  __slots__ = [ "host", "port", ]
 
-  channel_no: int
-  address:    str
-  port:       int
+  host: str
+  port: int
 
 
 @export
 @dataclass(frozen=True)
 class HumanConnectionStartedInfo(PrimitiveDataclassMixin):
-  __slots__ = ["channel_info", ]
+  __slots__ = ["address", "channel_no", ]
 
-  channel_info: ChannelInfo
+  address:    ConnectionAddress
+  channel_no: int
 
 
 HumanConnectionEstablishedInfo = TypeVar("HumanConnectionEstablishedInfo")
@@ -46,10 +46,11 @@ HumanConnectionEstablishedInfo = TypeVar("HumanConnectionEstablishedInfo")
 @export
 @dataclass(frozen=True)
 class HumanConnectionEstablishedInfo(PrimitiveDataclassMixin):
-  __slots__ = ["channel_info", "actor", ]
+  __slots__ = ["address", "channel_no", "actor", ]
 
-  channel_info: ChannelInfo
-  actor:        Optional[HumanActor]
+  address:    ConnectionAddress
+  channel_no: int
+  actor:      Optional[HumanActor]
 
   @classmethod
   def from_primitive(cls, value: Dict[str, Any], *args, **kwargs) -> HumanConnectionEstablishedInfo:
@@ -62,7 +63,8 @@ class HumanConnectionEstablishedInfo(PrimitiveDataclassMixin):
       actor = HumanActor.from_primitive(actor)
 
     return cls(
-      channel_info=ChannelInfo.from_primitive(value['channel_info']),
+      address=ConnectionAddress.from_primitive(value['address']),
+      channel_no=value['channel_no'],
       actor=actor,
     )
 
@@ -81,10 +83,11 @@ HumanConnectionLostInfo = TypeVar("HumanConnectionLostInfo")
 @export
 @dataclass(frozen=True)
 class HumanConnectionLostInfo(PrimitiveDataclassMixin):
-  __slots__ = ["channel_info", "reason", ]
+  __slots__ = ["address", "channel_no", ]
 
-  channel_info: ChannelInfo
-  reason:       Optional[str]
+  address:    ConnectionAddress
+  channel_no: int
+  reason:     Optional[str]
 
   @classmethod
   def from_primitive(cls, value: Dict[str, Any], *args, **kwargs) -> HumanConnectionLostInfo:
@@ -93,7 +96,8 @@ class HumanConnectionLostInfo(PrimitiveDataclassMixin):
 
     """
     return cls(
-      channel_info=ChannelInfo.from_primitive(value['channel_info']),
+      address=ConnectionAddress.from_primitive(value['address']),
+      channel_no=value['channel_no'],
       reason=value['reason'],
     )
 
