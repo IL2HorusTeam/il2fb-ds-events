@@ -40,13 +40,31 @@ class HumanConnectionStartedInfo(PrimitiveDataclassMixin):
   channel_info: ChannelInfo
 
 
+HumanConnectionEstablishedInfo = TypeVar("HumanConnectionEstablishedInfo")
+
+
 @export
 @dataclass(frozen=True)
 class HumanConnectionEstablishedInfo(PrimitiveDataclassMixin):
   __slots__ = ["channel_info", "actor", ]
 
   channel_info: ChannelInfo
-  actor:        HumanActor
+  actor:        Optional[HumanActor]
+
+  @classmethod
+  def from_primitive(cls, value: Dict[str, Any], *args, **kwargs) -> HumanConnectionEstablishedInfo:
+    """
+    Override base method to handle 'Optional' fields.
+
+    """
+    actor = value['actor']
+    if actor:
+      actor = HumanActor.from_primitive(actor)
+
+    return cls(
+      channel_info=ChannelInfo.from_primitive(value['channel_info']),
+      actor=actor,
+    )
 
 
 @export
