@@ -6,6 +6,9 @@ from .exceptions import EventRegistryLookupError
 from ._utils import export
 
 
+# TODO: do events really need to know about registries?
+
+
 @export
 class EventRegistry:
 
