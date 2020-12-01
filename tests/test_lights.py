@@ -2,6 +2,7 @@ import datetime
 import unittest
 
 from il2fb.commons.actors import HumanAircraftActor
+from il2fb.commons.spatial import Point3D
 
 from il2fb.ds.events.definitions.base import Event
 
@@ -30,6 +31,7 @@ class HumanToggledLandingLightsEventTestCase(unittest.TestCase):
         callsign="TheUser",
         aircraft="P-39D2",
       ),
+      coord=Point3D(71903.14, 41619.023, 5399.754),
     ))
     self.assertEqual(testee.to_primitive(), {
       'category': 'lights',
@@ -43,6 +45,11 @@ class HumanToggledLandingLightsEventTestCase(unittest.TestCase):
           'callsign': 'TheUser',
           'aircraft': 'P-39D2',
         },
+        'coord': {
+          'x': 71903.14,
+          'y': 41619.023,
+          'z': 5399.754,
+        },
       },
     })
 
@@ -55,6 +62,7 @@ class HumanToggledLandingLightsEventTestCase(unittest.TestCase):
         callsign="TheUser",
         aircraft="P-39D2",
       ),
+      coord=Point3D(71903.14, 41619.023, 5399.754),
     ))
     self.assertEqual(
       testee,
