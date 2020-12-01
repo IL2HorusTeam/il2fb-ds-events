@@ -13,7 +13,7 @@ from typing import Optional
 from typing import TypeVar
 
 from il2fb.commons.actors import HumanActor
-from il2fb.commons.belligerents import BELLIGERENT
+from il2fb.commons.belligerents import BELLIGERENTS
 from il2fb.commons.belligerents import BelligerentConstant
 from il2fb.commons.spatial import Point3D
 from il2fb.commons.structures import PrimitiveDataclassMixin
@@ -83,7 +83,7 @@ class HumanSelectedAirfieldInfo(TimeMixin, CoordinatesMixin, PrimitiveDataclassM
     timestamp   = datetime.time.fromisoformat(value['timestamp'])
     coord       = Point3D.from_primitive(value['coord'], *args, **kwargs)
     actor       = HumanActor.from_primitive(value['actor'], *args, **kwargs)
-    belligerent = BELLIGERENT[value['belligerent']]
+    belligerent = BELLIGERENTS[value['belligerent']]
 
     return cls(
       timestamp=timestamp,

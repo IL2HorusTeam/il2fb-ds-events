@@ -2,7 +2,7 @@ import datetime
 import unittest
 
 from il2fb.commons.actors import HumanActor
-from il2fb.commons.belligerents import BELLIGERENT
+from il2fb.commons.belligerents import BELLIGERENTS
 from il2fb.commons.spatial import Point3D
 
 from il2fb.ds.events.definitions.base import Event
@@ -85,7 +85,7 @@ class HumanSelectedAirfieldEventTestCase(unittest.TestCase):
         callsign="TheUser",
       ),
       coord=Point3D(71903.14, 41619.023, 5399.754),
-      belligerent=BELLIGERENT.RED,
+      belligerent=BELLIGERENTS.RED,
     ))
     self.assertEqual(testee.to_primitive(), {
       'category': 'briefing',
@@ -113,7 +113,7 @@ class HumanSelectedAirfieldEventTestCase(unittest.TestCase):
         callsign="TheUser",
       ),
       coord=Point3D(71903.14, 41619.023, 5399.754),
-      belligerent=BELLIGERENT.RED,
+      belligerent=BELLIGERENTS.RED,
     ))
     self.assertEqual(
       testee,
