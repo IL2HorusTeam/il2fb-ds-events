@@ -53,7 +53,6 @@ class HumanToggledLandingLightsEventTestCase(unittest.TestCase):
       },
     })
 
-
   def test_from_primitive(self):
     testee = HumanToggledLandingLightsEvent(HumanToggledLandingLightsInfo(
       timestamp=datetime.time(23, 45, 59),

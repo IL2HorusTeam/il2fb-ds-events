@@ -53,7 +53,6 @@ class HumanToggledWingtipSmokesEventTestCase(unittest.TestCase):
       },
     })
 
-
   def test_from_primitive(self):
     testee = HumanToggledWingtipSmokesEvent(HumanToggledWingtipSmokesInfo(
       timestamp=datetime.time(23, 45, 59),

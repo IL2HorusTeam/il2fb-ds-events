@@ -1,10 +1,28 @@
+import datetime
+import sys
+
+if sys.version_info >= (3, 9):
+  Dict = dict
+else:
+  from typing import Dict
+
 from dataclasses import dataclass
 
+from typing import Any
+from typing import Optional
+from typing import TypeVar
+
 from il2fb.commons.actors import HumanActor
+from il2fb.commons.belligerents import BELLIGERENT
+from il2fb.commons.belligerents import BelligerentConstant
+from il2fb.commons.spatial import Point3D
 from il2fb.commons.structures import PrimitiveDataclassMixin
 
 from .base import Event
+
 from .mixins import TimeMixin
+from .mixins import CoordinatesMixin
+
 from .registry import register
 
 from ._utils import export
@@ -26,3 +44,54 @@ class HumanReturnedToBriefingEvent(Event):
   category = "briefing"
   verbose_name = _("Human returned to briefing")
   data: HumanReturnedToBriefingInfo
+
+
+HumanSelectedAirfieldInfo = TypeVar("HumanSelectedAirfieldInfo")
+
+
+@export
+@dataclass(frozen=True)
+class HumanSelectedAirfieldInfo(TimeMixin, CoordinatesMixin, PrimitiveDataclassMixin):
+  __slots__ = ["timestamp", "coord", "actor", "belligerent", ]
+
+  actor:       HumanActor
+  belligerent: BelligerentConstant
+
+  def to_primitive(self, *args, **kwargs) -> Dict[str, Any]:
+    """
+    Override base method to handle fields with complex constants.
+
+    """
+    return {
+      'timestamp':   self.timestamp.isoformat(),
+      'coord':       self.coord.to_primitive(*args, **kwargs),
+      'actor':       self.actor.to_primitive(*args, **kwargs),
+      'belligerent': self.belligerent.name,
+    }
+
+  @classmethod
+  def from_primitive(cls, value: Dict[str, Any], *args, **kwargs) -> HumanSelectedAirfieldInfo:
+    """
+    Override base method to handle fields with complex constants.
+
+    """
+    timestamp   = datetime.time.fromisoformat(value['timestamp'])
+    coord       = Point3D.from_primitive(value['coord'], *args, **kwargs)
+    actor       = HumanActor.from_primitive(value['actor'], *args, **kwargs)
+    belligerent = BELLIGERENT[value['belligerent']]
+
+    return cls(
+      timestamp=timestamp,
+      coord=coord,
+      actor=actor,
+      belligerent=belligerent,
+    )
+
+
+@export
+@register
+@dataclass(frozen=True)
+class HumanSelectedAirfieldEvent(Event):
+  category = "briefing"
+  verbose_name = _("Human selected airfield")
+  data: HumanSelectedAirfieldInfo
