@@ -7,6 +7,7 @@ from il2fb.commons.spatial import Point3D
 
 from il2fb.ds.events.definitions.base import Event
 
+from il2fb.ds.events.definitions.briefing import BriefingEvent
 from il2fb.ds.events.definitions.briefing import HumanReturnedToBriefingEvent
 from il2fb.ds.events.definitions.briefing import HumanSelectedAirfieldEvent
 
@@ -16,10 +17,16 @@ from il2fb.ds.events.definitions.briefing import HumanSelectedAirfieldInfo
 from il2fb.ds.events.definitions import registry
 
 
-class HumanReturnedToBriefingEventTestCase(unittest.TestCase):
+class BriefingEventTestCase(unittest.TestCase):
 
   def test_derives_from_Event(self):
-    self.assertTrue(issubclass(HumanReturnedToBriefingEvent, Event))
+    self.assertTrue(issubclass(BriefingEvent, Event))
+
+
+class HumanReturnedToBriefingEventTestCase(unittest.TestCase):
+
+  def test_derives_from_BriefingEvent(self):
+    self.assertTrue(issubclass(HumanReturnedToBriefingEvent, BriefingEvent))
 
   def test_is_registered(self):
     self.assertEqual(
@@ -62,8 +69,8 @@ class HumanReturnedToBriefingEventTestCase(unittest.TestCase):
 
 class HumanSelectedAirfieldEventTestCase(unittest.TestCase):
 
-  def test_derives_from_Event(self):
-    self.assertTrue(issubclass(HumanSelectedAirfieldEvent, Event))
+  def test_derives_from_BriefingEvent(self):
+    self.assertTrue(issubclass(HumanSelectedAirfieldEvent, BriefingEvent))
 
   def test_is_registered(self):
     self.assertEqual(
