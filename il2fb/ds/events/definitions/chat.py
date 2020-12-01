@@ -21,7 +21,7 @@ class ChatMessage(PrimitiveDataclassMixin):
 @export
 @dataclass(frozen=True)
 class HumanChatMessage(ChatMessage):
-  __slots__ = ChatMessage.__slots__ + ["msg", ]
+  __slots__ = ChatMessage.__slots__ + ["actor", ]
 
   actor: HumanActor
 
