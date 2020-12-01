@@ -95,7 +95,7 @@ class HumanConnectionEstablishedInfo(PrimitiveDataclassMixin):
 @export
 @dataclass(frozen=True)
 class HumanConnectionEstablishedLightInfo(TimeMixin, PrimitiveDataclassMixin):
-  __slots__ = ["time", "actor", ]
+  __slots__ = ["timestamp", "actor", ]
 
   actor: HumanActor
 
@@ -128,7 +128,7 @@ class HumanConnectionLostInfo(PrimitiveDataclassMixin):
 @export
 @dataclass(frozen=True)
 class HumanConnectionLostLightInfo(TimeMixin, PrimitiveDataclassMixin):
-  __slots__ = ["time", "actor", ]
+  __slots__ = ["timestamp", "actor", ]
 
   actor: HumanActor
 

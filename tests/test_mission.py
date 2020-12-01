@@ -37,7 +37,7 @@ class MissionLoadedEventTestCase(unittest.TestCase):
   def test_to_primitive(self):
     testee = MissionLoadedEvent(
       MissionLoadedInfo(
-        datetime=datetime.datetime(2020, 8, 3, 15, 26, 45),
+        timestamp=datetime.datetime(2020, 8, 3, 15, 26, 45),
         file_path=Path('net/dogfight/1596469535.mis'),
       ),
     )
@@ -47,7 +47,7 @@ class MissionLoadedEventTestCase(unittest.TestCase):
       'verbose_name': 'Mission loaded',
       'help_text': None,
       'data': {
-        'datetime': '2020-08-03T15:26:45',
+        'timestamp': '2020-08-03T15:26:45',
         'file_path': 'net/dogfight/1596469535.mis',
       },
     })
@@ -55,7 +55,7 @@ class MissionLoadedEventTestCase(unittest.TestCase):
   def test_from_primitive(self):
     testee = MissionLoadedEvent(
       MissionLoadedInfo(
-        datetime=datetime.datetime(2020, 8, 3, 15, 26, 45),
+        timestamp=datetime.datetime(2020, 8, 3, 15, 26, 45),
         file_path=Path('net/dogfight/1596469535.mis'),
       ),
     )
@@ -84,7 +84,7 @@ class MissionStartedEventTestCase(unittest.TestCase):
       'verbose_name': 'Mission started',
       'help_text': None,
       'data': {
-        'time': '15:26:45',
+        'timestamp': '15:26:45',
       },
     })
 
@@ -115,7 +115,7 @@ class MissionEndedEventTestCase(unittest.TestCase):
       'verbose_name': 'Mission ended',
       'help_text': None,
       'data': {
-        'time': '15:26:45',
+        'timestamp': '15:26:45',
       },
     })
 

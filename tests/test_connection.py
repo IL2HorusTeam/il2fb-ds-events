@@ -239,7 +239,7 @@ class HumanConnectionEstablishedLightEventTestCase(unittest.TestCase):
     testee = HumanConnectionEstablishedLightEvent(
       HumanConnectionEstablishedLightInfo(
         actor=HumanActor("TheUser"),
-        time=datetime.time(23, 45, 59),
+        timestamp=datetime.time(23, 45, 59),
       ),
     )
     self.assertEqual(testee.to_primitive(), {
@@ -249,7 +249,7 @@ class HumanConnectionEstablishedLightEventTestCase(unittest.TestCase):
       'help_text': None,
       'data': {
         'actor': {'callsign': 'TheUser'},
-        'time': '23:45:59',
+        'timestamp': '23:45:59',
       },
     })
 
@@ -257,7 +257,7 @@ class HumanConnectionEstablishedLightEventTestCase(unittest.TestCase):
     testee = HumanConnectionEstablishedLightEvent(
       HumanConnectionEstablishedLightInfo(
         actor=HumanActor("TheUser"),
-        time=datetime.time(23, 45, 59),
+        timestamp=datetime.time(23, 45, 59),
       ),
     )
     self.assertEqual(
@@ -356,7 +356,7 @@ class HumanConnectionLostLightEventTestCase(unittest.TestCase):
     testee = HumanConnectionLostLightEvent(
       HumanConnectionLostLightInfo(
         actor=HumanActor("TheUser"),
-        time=datetime.time(23, 45, 59),
+        timestamp=datetime.time(23, 45, 59),
       ),
     )
     self.assertEqual(testee.to_primitive(), {
@@ -366,7 +366,7 @@ class HumanConnectionLostLightEventTestCase(unittest.TestCase):
       'help_text': None,
       'data': {
         'actor': {'callsign': 'TheUser'},
-        'time': '23:45:59',
+        'timestamp': '23:45:59',
       },
     })
 
@@ -374,7 +374,7 @@ class HumanConnectionLostLightEventTestCase(unittest.TestCase):
     testee = HumanConnectionLostLightEvent(
       HumanConnectionLostLightInfo(
         actor=HumanActor("TheUser"),
-        time=datetime.time(23, 45, 59),
+        timestamp=datetime.time(23, 45, 59),
       ),
     )
     self.assertEqual(

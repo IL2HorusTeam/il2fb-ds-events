@@ -26,13 +26,13 @@ from ._translations import gettext_lazy as _
 @export
 @dataclass(frozen=True)
 class MissionLoadedInfo(DatetimeMixin, PrimitiveDataclassMixin):
-  __slots__ = ["datetime", "file_path", ]
+  __slots__ = ["timestamp", "file_path", ]
 
   file_path: Path
 
   def to_primitive(self, *args, **kwargs) -> Dict[str, Any]:
     return {
-      "datetime": self.datetime.isoformat(),
+      "timestamp": self.timestamp.isoformat(),
       "file_path": str(self.file_path),
     }
 
@@ -40,13 +40,13 @@ class MissionLoadedInfo(DatetimeMixin, PrimitiveDataclassMixin):
 @export
 @dataclass(frozen=True)
 class MissionStartedInfo(TimeMixin, PrimitiveDataclassMixin):
-  __slots__ = ["time", ]
+  __slots__ = ["timestamp", ]
 
 
 @export
 @dataclass(frozen=True)
 class MissionEndedInfo(TimeMixin, PrimitiveDataclassMixin):
-  __slots__ = ["time", ]
+  __slots__ = ["timestamp", ]
 
 
 @export

@@ -5,9 +5,9 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class DatetimeMixin:
-  datetime: datetime.datetime
+  timestamp: datetime.datetime
 
 
 @dataclass(frozen=True)
 class TimeMixin:
-  time: datetime.time
+  timestamp: datetime.time
