@@ -84,7 +84,7 @@ class HumanSelectedAirfieldEventTestCase(unittest.TestCase):
       actor=HumanActor(
         callsign="TheUser",
       ),
-      coord=Point3D(71903.14, 41619.023, 5399.754),
+      pos=Point3D(71903.14, 41619.023, 5399.754),
       belligerent=BELLIGERENTS.RED,
     ))
     self.assertEqual(testee.to_primitive(), {
@@ -97,11 +97,7 @@ class HumanSelectedAirfieldEventTestCase(unittest.TestCase):
         'actor': {
           'callsign': 'TheUser',
         },
-        'coord': {
-          'x': 71903.14,
-          'y': 41619.023,
-          'z': 5399.754,
-        },
+        'pos': {'x': 71903.14, 'y': 41619.023, 'z': 5399.754},
         'belligerent': 'RED',
       },
     })
@@ -112,7 +108,7 @@ class HumanSelectedAirfieldEventTestCase(unittest.TestCase):
       actor=HumanActor(
         callsign="TheUser",
       ),
-      coord=Point3D(71903.14, 41619.023, 5399.754),
+      pos=Point3D(71903.14, 41619.023, 5399.754),
       belligerent=BELLIGERENTS.RED,
     ))
     self.assertEqual(

@@ -31,7 +31,7 @@ class HumanToggledWingtipSmokesEventTestCase(unittest.TestCase):
         callsign="TheUser",
         aircraft="P-39D2",
       ),
-      coord=Point3D(71903.14, 41619.023, 5399.754),
+      pos=Point3D(71903.14, 41619.023, 5399.754),
     ))
     self.assertEqual(testee.to_primitive(), {
       'category': 'smokes',
@@ -45,11 +45,7 @@ class HumanToggledWingtipSmokesEventTestCase(unittest.TestCase):
           'callsign': 'TheUser',
           'aircraft': 'P-39D2',
         },
-        'coord': {
-          'x': 71903.14,
-          'y': 41619.023,
-          'z': 5399.754,
-        },
+        'pos': {'x': 71903.14, 'y': 41619.023, 'z': 5399.754},
       },
     })
 
@@ -61,7 +57,7 @@ class HumanToggledWingtipSmokesEventTestCase(unittest.TestCase):
         callsign="TheUser",
         aircraft="P-39D2",
       ),
-      coord=Point3D(71903.14, 41619.023, 5399.754),
+      pos=Point3D(71903.14, 41619.023, 5399.754),
     ))
     self.assertEqual(
       testee,

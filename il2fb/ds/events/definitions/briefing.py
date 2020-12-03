@@ -20,7 +20,7 @@ from il2fb.commons.structures import PrimitiveDataclassMixin
 from .base import Event
 
 from .mixins import TimestampMixin
-from .mixins import CoordinatesMixin
+from .mixins import PositionMixin
 
 from .registry import register
 
@@ -55,8 +55,8 @@ HumanSelectedAirfieldInfo = TypeVar("HumanSelectedAirfieldInfo")
 
 @export
 @dataclass(frozen=True)
-class HumanSelectedAirfieldInfo(TimestampMixin, CoordinatesMixin, PrimitiveDataclassMixin):
-  __slots__ = ["timestamp", "coord", "actor", "belligerent", ]
+class HumanSelectedAirfieldInfo(TimestampMixin, PositionMixin, PrimitiveDataclassMixin):
+  __slots__ = ["timestamp", "pos", "actor", "belligerent", ]
 
   actor:       HumanActor
   belligerent: BelligerentConstant
@@ -68,7 +68,7 @@ class HumanSelectedAirfieldInfo(TimestampMixin, CoordinatesMixin, PrimitiveDatac
     """
     return {
       'timestamp':   self.timestamp.isoformat(),
-      'coord':       self.coord.to_primitive(*args, **kwargs),
+      'pos':         self.pos.to_primitive(*args, **kwargs),
       'actor':       self.actor.to_primitive(*args, **kwargs),
       'belligerent': self.belligerent.name,
     }
@@ -80,13 +80,13 @@ class HumanSelectedAirfieldInfo(TimestampMixin, CoordinatesMixin, PrimitiveDatac
 
     """
     timestamp   = datetime.datetime.fromisoformat(value['timestamp'])
-    coord       = Point3D.from_primitive(value['coord'], *args, **kwargs)
+    pos         = Point3D.from_primitive(value['pos'], *args, **kwargs)
     actor       = HumanActor.from_primitive(value['actor'], *args, **kwargs)
     belligerent = BELLIGERENTS[value['belligerent']]
 
     return cls(
       timestamp=timestamp,
-      coord=coord,
+      pos=pos,
       actor=actor,
       belligerent=belligerent,
     )

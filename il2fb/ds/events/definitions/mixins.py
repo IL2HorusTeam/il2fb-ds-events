@@ -11,5 +11,5 @@ class TimestampMixin:
 
 
 @dataclass(frozen=True)
-class CoordinatesMixin:
-  coord: Point3D
+class PositionMixin:
+  pos: Point3D
