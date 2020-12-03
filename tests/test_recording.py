@@ -24,7 +24,7 @@ class HumanToggledRecordingEventTestCase(unittest.TestCase):
 
   def test_to_primitive(self):
     testee = HumanToggledRecordingEvent(HumanToggledRecordingInfo(
-      timestamp=datetime.time(23, 45, 59),
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       state=True,
       actor=HumanActor(
         callsign="TheUser",
@@ -36,7 +36,7 @@ class HumanToggledRecordingEventTestCase(unittest.TestCase):
       'verbose_name': 'Human toggled track recording',
       'help_text': None,
       'data': {
-        'timestamp': "23:45:59",
+        'timestamp': '2020-12-31T23:45:59',
         'state': True,
         'actor': {
           'callsign': 'TheUser',
@@ -46,7 +46,7 @@ class HumanToggledRecordingEventTestCase(unittest.TestCase):
 
   def test_from_primitive(self):
     testee = HumanToggledRecordingEvent(HumanToggledRecordingInfo(
-      timestamp=datetime.time(23, 45, 59),
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       state=True,
       actor=HumanActor(
         callsign="TheUser",

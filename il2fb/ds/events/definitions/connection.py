@@ -15,7 +15,7 @@ from il2fb.commons.actors import HumanActor
 from il2fb.commons.structures import PrimitiveDataclassMixin
 
 from .base import Event
-from .mixins import TimeMixin
+from .mixins import TimestampMixin
 from .registry import register
 
 from ._utils import export
@@ -75,7 +75,7 @@ class HumanConnectionEstablishedInfo(PrimitiveDataclassMixin):
 
 @export
 @dataclass(frozen=True)
-class HumanConnectionEstablishedLightInfo(TimeMixin, PrimitiveDataclassMixin):
+class HumanConnectionEstablishedLightInfo(TimestampMixin, PrimitiveDataclassMixin):
   __slots__ = ["timestamp", "actor", ]
 
   actor: HumanActor
@@ -108,7 +108,7 @@ class HumanConnectionLostInfo(PrimitiveDataclassMixin):
 
 @export
 @dataclass(frozen=True)
-class HumanConnectionLostLightInfo(TimeMixin, PrimitiveDataclassMixin):
+class HumanConnectionLostLightInfo(TimestampMixin, PrimitiveDataclassMixin):
   __slots__ = ["timestamp", "actor", ]
 
   actor: HumanActor

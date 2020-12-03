@@ -19,7 +19,7 @@ from il2fb.commons.structures import PrimitiveDataclassMixin
 
 from .base import Event
 
-from .mixins import TimeMixin
+from .mixins import TimestampMixin
 from .mixins import CoordinatesMixin
 
 from .registry import register
@@ -36,7 +36,7 @@ class BriefingEvent(Event):
 
 @export
 @dataclass(frozen=True)
-class HumanReturnedToBriefingInfo(TimeMixin, PrimitiveDataclassMixin):
+class HumanReturnedToBriefingInfo(TimestampMixin, PrimitiveDataclassMixin):
   __slots__ = ["timestamp", "actor", ]
 
   actor: HumanActor
@@ -55,7 +55,7 @@ HumanSelectedAirfieldInfo = TypeVar("HumanSelectedAirfieldInfo")
 
 @export
 @dataclass(frozen=True)
-class HumanSelectedAirfieldInfo(TimeMixin, CoordinatesMixin, PrimitiveDataclassMixin):
+class HumanSelectedAirfieldInfo(TimestampMixin, CoordinatesMixin, PrimitiveDataclassMixin):
   __slots__ = ["timestamp", "coord", "actor", "belligerent", ]
 
   actor:       HumanActor
@@ -79,7 +79,7 @@ class HumanSelectedAirfieldInfo(TimeMixin, CoordinatesMixin, PrimitiveDataclassM
     Override base method to handle fields with complex constants.
 
     """
-    timestamp   = datetime.time.fromisoformat(value['timestamp'])
+    timestamp   = datetime.datetime.fromisoformat(value['timestamp'])
     coord       = Point3D.from_primitive(value['coord'], *args, **kwargs)
     actor       = HumanActor.from_primitive(value['actor'], *args, **kwargs)
     belligerent = BELLIGERENTS[value['belligerent']]

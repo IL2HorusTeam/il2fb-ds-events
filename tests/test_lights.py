@@ -25,7 +25,7 @@ class HumanToggledLandingLightsEventTestCase(unittest.TestCase):
 
   def test_to_primitive(self):
     testee = HumanToggledLandingLightsEvent(HumanToggledLandingLightsInfo(
-      timestamp=datetime.time(23, 45, 59),
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       state=True,
       actor=HumanAircraftActor(
         callsign="TheUser",
@@ -39,7 +39,7 @@ class HumanToggledLandingLightsEventTestCase(unittest.TestCase):
       'verbose_name': 'Human toggled landing lights',
       'help_text': None,
       'data': {
-        'timestamp': "23:45:59",
+        'timestamp': '2020-12-31T23:45:59',
         'state': True,
         'actor': {
           'callsign': 'TheUser',
@@ -55,7 +55,7 @@ class HumanToggledLandingLightsEventTestCase(unittest.TestCase):
 
   def test_from_primitive(self):
     testee = HumanToggledLandingLightsEvent(HumanToggledLandingLightsInfo(
-      timestamp=datetime.time(23, 45, 59),
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       state=True,
       actor=HumanAircraftActor(
         callsign="TheUser",

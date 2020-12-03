@@ -37,7 +37,7 @@ class MissionLoadedEventTestCase(unittest.TestCase):
   def test_to_primitive(self):
     testee = MissionLoadedEvent(
       MissionLoadedInfo(
-        timestamp=datetime.datetime(2020, 8, 3, 15, 26, 45),
+        timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
         file_path=Path('net/dogfight/1596469535.mis'),
       ),
     )
@@ -47,7 +47,7 @@ class MissionLoadedEventTestCase(unittest.TestCase):
       'verbose_name': 'Mission loaded',
       'help_text': None,
       'data': {
-        'timestamp': '2020-08-03T15:26:45',
+        'timestamp': '2020-12-31T23:45:59',
         'file_path': 'net/dogfight/1596469535.mis',
       },
     })
@@ -55,7 +55,7 @@ class MissionLoadedEventTestCase(unittest.TestCase):
   def test_from_primitive(self):
     testee = MissionLoadedEvent(
       MissionLoadedInfo(
-        timestamp=datetime.datetime(2020, 8, 3, 15, 26, 45),
+        timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
         file_path=Path('net/dogfight/1596469535.mis'),
       ),
     )
@@ -77,19 +77,23 @@ class MissionStartedEventTestCase(unittest.TestCase):
     )
 
   def test_to_primitive(self):
-    testee = MissionStartedEvent(MissionStartedInfo(datetime.time(15, 26, 45)))
+    testee = MissionStartedEvent(MissionStartedInfo(
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
+    ))
     self.assertEqual(testee.to_primitive(), {
       'category': 'mission',
       'name': 'MissionStartedEvent',
       'verbose_name': 'Mission started',
       'help_text': None,
       'data': {
-        'timestamp': '15:26:45',
+        'timestamp': '2020-12-31T23:45:59',
       },
     })
 
   def test_from_primitive(self):
-    testee = MissionStartedEvent(MissionStartedInfo(datetime.time(15, 26, 45)))
+    testee = MissionStartedEvent(MissionStartedInfo(
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
+    ))
     self.assertEqual(
       testee,
       MissionStartedEvent.from_primitive(testee.to_primitive()),
@@ -108,19 +112,23 @@ class MissionEndedEventTestCase(unittest.TestCase):
     )
 
   def test_to_primitive(self):
-    testee = MissionEndedEvent(MissionEndedInfo(datetime.time(15, 26, 45)))
+    testee = MissionEndedEvent(MissionEndedInfo(
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
+    ))
     self.assertEqual(testee.to_primitive(), {
       'category': 'mission',
       'name': 'MissionEndedEvent',
       'verbose_name': 'Mission ended',
       'help_text': None,
       'data': {
-        'timestamp': '15:26:45',
+        'timestamp': '2020-12-31T23:45:59',
       },
     })
 
   def test_from_primitive(self):
-    testee = MissionEndedEvent(MissionEndedInfo(datetime.time(15, 26, 45)))
+    testee = MissionEndedEvent(MissionEndedInfo(
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
+    ))
     self.assertEqual(
       testee,
       MissionEndedEvent.from_primitive(testee.to_primitive()),

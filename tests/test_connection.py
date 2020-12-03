@@ -215,7 +215,7 @@ class HumanConnectionEstablishedLightEventTestCase(unittest.TestCase):
     testee = HumanConnectionEstablishedLightEvent(
       HumanConnectionEstablishedLightInfo(
         actor=HumanActor("TheUser"),
-        timestamp=datetime.time(23, 45, 59),
+        timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       ),
     )
     self.assertEqual(testee.to_primitive(), {
@@ -225,7 +225,7 @@ class HumanConnectionEstablishedLightEventTestCase(unittest.TestCase):
       'help_text': None,
       'data': {
         'actor': {'callsign': 'TheUser'},
-        'timestamp': '23:45:59',
+        'timestamp': '2020-12-31T23:45:59',
       },
     })
 
@@ -233,7 +233,7 @@ class HumanConnectionEstablishedLightEventTestCase(unittest.TestCase):
     testee = HumanConnectionEstablishedLightEvent(
       HumanConnectionEstablishedLightInfo(
         actor=HumanActor("TheUser"),
-        timestamp=datetime.time(23, 45, 59),
+        timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       ),
     )
     self.assertEqual(
@@ -332,7 +332,7 @@ class HumanConnectionLostLightEventTestCase(unittest.TestCase):
     testee = HumanConnectionLostLightEvent(
       HumanConnectionLostLightInfo(
         actor=HumanActor("TheUser"),
-        timestamp=datetime.time(23, 45, 59),
+        timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       ),
     )
     self.assertEqual(testee.to_primitive(), {
@@ -342,7 +342,7 @@ class HumanConnectionLostLightEventTestCase(unittest.TestCase):
       'help_text': None,
       'data': {
         'actor': {'callsign': 'TheUser'},
-        'timestamp': '23:45:59',
+        'timestamp': '2020-12-31T23:45:59',
       },
     })
 
@@ -350,7 +350,7 @@ class HumanConnectionLostLightEventTestCase(unittest.TestCase):
     testee = HumanConnectionLostLightEvent(
       HumanConnectionLostLightInfo(
         actor=HumanActor("TheUser"),
-        timestamp=datetime.time(23, 45, 59),
+        timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       ),
     )
     self.assertEqual(

@@ -5,7 +5,7 @@ from il2fb.commons.structures import PrimitiveDataclassMixin
 
 from .base import Event
 
-from .mixins import TimeMixin
+from .mixins import TimestampMixin
 from .mixins import CoordinatesMixin
 
 from .registry import register
@@ -16,7 +16,7 @@ from ._translations import gettext_lazy as _
 
 @export
 @dataclass(frozen=True)
-class HumanToggledLandingLightsInfo(TimeMixin, CoordinatesMixin, PrimitiveDataclassMixin):
+class HumanToggledLandingLightsInfo(TimestampMixin, CoordinatesMixin, PrimitiveDataclassMixin):
   __slots__ = ["timestamp", "coord", "actor", "state", ]
 
   actor: HumanAircraftActor

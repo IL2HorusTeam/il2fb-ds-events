@@ -14,8 +14,7 @@ from il2fb.commons.structures import PrimitiveDataclassMixin
 
 from .base import Event
 
-from .mixins import DatetimeMixin
-from .mixins import TimeMixin
+from .mixins import TimestampMixin
 
 from .registry import register
 
@@ -25,7 +24,7 @@ from ._translations import gettext_lazy as _
 
 @export
 @dataclass(frozen=True)
-class MissionLoadedInfo(DatetimeMixin, PrimitiveDataclassMixin):
+class MissionLoadedInfo(TimestampMixin, PrimitiveDataclassMixin):
   __slots__ = ["timestamp", "file_path", ]
 
   file_path: Path
@@ -39,13 +38,13 @@ class MissionLoadedInfo(DatetimeMixin, PrimitiveDataclassMixin):
 
 @export
 @dataclass(frozen=True)
-class MissionStartedInfo(TimeMixin, PrimitiveDataclassMixin):
+class MissionStartedInfo(TimestampMixin, PrimitiveDataclassMixin):
   __slots__ = ["timestamp", ]
 
 
 @export
 @dataclass(frozen=True)
-class MissionEndedInfo(TimeMixin, PrimitiveDataclassMixin):
+class MissionEndedInfo(TimestampMixin, PrimitiveDataclassMixin):
   __slots__ = ["timestamp", ]
 
 

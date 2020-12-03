@@ -36,7 +36,7 @@ class HumanReturnedToBriefingEventTestCase(unittest.TestCase):
 
   def test_to_primitive(self):
     testee = HumanReturnedToBriefingEvent(HumanReturnedToBriefingInfo(
-      timestamp=datetime.time(23, 45, 59),
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       actor=HumanActor(
         callsign="TheUser",
       ),
@@ -47,7 +47,7 @@ class HumanReturnedToBriefingEventTestCase(unittest.TestCase):
       'verbose_name': 'Human returned to briefing',
       'help_text': None,
       'data': {
-        'timestamp': "23:45:59",
+        'timestamp': '2020-12-31T23:45:59',
         'actor': {
           'callsign': 'TheUser',
         },
@@ -56,7 +56,7 @@ class HumanReturnedToBriefingEventTestCase(unittest.TestCase):
 
   def test_from_primitive(self):
     testee = HumanReturnedToBriefingEvent(HumanReturnedToBriefingInfo(
-      timestamp=datetime.time(23, 45, 59),
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       actor=HumanActor(
         callsign="TheUser",
       ),
@@ -80,7 +80,7 @@ class HumanSelectedAirfieldEventTestCase(unittest.TestCase):
 
   def test_to_primitive(self):
     testee = HumanSelectedAirfieldEvent(HumanSelectedAirfieldInfo(
-      timestamp=datetime.time(23, 45, 59),
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       actor=HumanActor(
         callsign="TheUser",
       ),
@@ -93,7 +93,7 @@ class HumanSelectedAirfieldEventTestCase(unittest.TestCase):
       'verbose_name': 'Human selected airfield',
       'help_text': None,
       'data': {
-        'timestamp': "23:45:59",
+        'timestamp': '2020-12-31T23:45:59',
         'actor': {
           'callsign': 'TheUser',
         },
@@ -108,7 +108,7 @@ class HumanSelectedAirfieldEventTestCase(unittest.TestCase):
 
   def test_from_primitive(self):
     testee = HumanSelectedAirfieldEvent(HumanSelectedAirfieldInfo(
-      timestamp=datetime.time(23, 45, 59),
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       actor=HumanActor(
         callsign="TheUser",
       ),
