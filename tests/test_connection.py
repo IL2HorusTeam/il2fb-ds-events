@@ -181,17 +181,6 @@ class HumanConnectionEstablishedEventTestCase(unittest.TestCase):
       },
     })
 
-  def test_to_primitive_no_actor(self):
-    testee = HumanConnectionEstablishedEvent(
-      HumanConnectionEstablishedInfo(
-        address=ConnectionAddress(host="127.0.0.1", port=21000),
-        channel_no=1,
-        actor=None,
-      ),
-    )
-    primitive = testee.to_primitive()
-    self.assertIsNone(primitive['data']['actor'])
-
   def test_from_primitive(self):
     testee = HumanConnectionEstablishedEvent(
       HumanConnectionEstablishedInfo(
@@ -200,19 +189,6 @@ class HumanConnectionEstablishedEventTestCase(unittest.TestCase):
         actor=HumanActor(
           callsign="TheUser",
         ),
-      ),
-    )
-    self.assertEqual(
-      testee,
-      HumanConnectionEstablishedEvent.from_primitive(testee.to_primitive()),
-    )
-
-  def test_from_primitive_no_actor(self):
-    testee = HumanConnectionEstablishedEvent(
-      HumanConnectionEstablishedInfo(
-        address=ConnectionAddress(host="127.0.0.1", port=21000),
-        channel_no=1,
-        actor=None,
       ),
     )
     self.assertEqual(

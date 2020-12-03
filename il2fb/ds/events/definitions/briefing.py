@@ -9,7 +9,6 @@ else:
 from dataclasses import dataclass
 
 from typing import Any
-from typing import Optional
 from typing import TypeVar
 
 from il2fb.commons.actors import HumanActor

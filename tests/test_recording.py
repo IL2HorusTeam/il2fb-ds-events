@@ -44,15 +44,6 @@ class HumanToggledRecordingEventTestCase(unittest.TestCase):
       },
     })
 
-  def test_to_primitive_no_actor(self):
-    testee = HumanToggledRecordingEvent(HumanToggledRecordingInfo(
-      timestamp=datetime.time(23, 45, 59),
-      state=True,
-      actor=None,
-    ))
-    primitive = testee.to_primitive()
-    self.assertIsNone(primitive['data']['actor'])
-
   def test_from_primitive(self):
     testee = HumanToggledRecordingEvent(HumanToggledRecordingInfo(
       timestamp=datetime.time(23, 45, 59),
@@ -60,17 +51,6 @@ class HumanToggledRecordingEventTestCase(unittest.TestCase):
       actor=HumanActor(
         callsign="TheUser",
       ),
-    ))
-    self.assertEqual(
-      testee,
-      HumanToggledRecordingEvent.from_primitive(testee.to_primitive()),
-    )
-
-  def test_from_primitive_no_actor(self):
-    testee = HumanToggledRecordingEvent(HumanToggledRecordingInfo(
-      timestamp=datetime.time(23, 45, 59),
-      state=True,
-      actor=None,
     ))
     self.assertEqual(
       testee,
