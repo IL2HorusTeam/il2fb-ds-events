@@ -27,29 +27,11 @@ class HumanSpawnedInfo(TimestampMixin, PrimitiveDataclassMixin):
 
 
 @export
-@register
-@dataclass(frozen=True)
-class HumanSpawnedEvent(Event):
-  category = "spawning"
-  verbose_name = _("Human spawned")
-  data: HumanSpawnedInfo
-
-
-@export
 @dataclass(frozen=True)
 class HumanDespawnedInfo(TimestampMixin, PositionMixin, PrimitiveDataclassMixin):
   __slots__ = ["timestamp", "pos", "actor"]
 
   actor: HumanAircraftActor
-
-
-@export
-@register
-@dataclass(frozen=True)
-class HumanDespawnedEvent(Event):
-  category = "spawning"
-  verbose_name = _("Human despawned")
-  data: HumanDespawnedInfo
 
 
 @export
@@ -61,9 +43,30 @@ class AIAircraftDespawnedInfo(TimestampMixin, PositionMixin, PrimitiveDataclassM
 
 
 @export
+@dataclass(frozen=True)
+class SpawningEvent(Event):
+  category = "spawning"
+
+
+@export
 @register
 @dataclass(frozen=True)
-class AIAircraftDespawnedEvent(Event):
-  category = "spawning"
+class HumanSpawnedEvent(SpawningEvent):
+  verbose_name = _("Human spawned")
+  data: HumanSpawnedInfo
+
+
+@export
+@register
+@dataclass(frozen=True)
+class HumanDespawnedEvent(SpawningEvent):
+  verbose_name = _("Human despawned")
+  data: HumanDespawnedInfo
+
+
+@export
+@register
+@dataclass(frozen=True)
+class AIAircraftDespawnedEvent(SpawningEvent):
   verbose_name = _("AI aircraft despawned")
   data: AIAircraftDespawnedInfo

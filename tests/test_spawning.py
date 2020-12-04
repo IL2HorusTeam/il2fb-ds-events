@@ -8,6 +8,8 @@ from il2fb.commons.spatial import Point3D
 
 from il2fb.ds.events.definitions.base import Event
 
+from il2fb.ds.events.definitions.spawning import SpawningEvent
+
 from il2fb.ds.events.definitions.spawning import HumanSpawnedEvent
 from il2fb.ds.events.definitions.spawning import HumanSpawnedInfo
 
@@ -20,9 +22,16 @@ from il2fb.ds.events.definitions.spawning import AIAircraftDespawnedInfo
 from il2fb.ds.events.definitions import registry
 
 
-class HumanSpawnedEventTestCase(unittest.TestCase):
+class SpawningEventTestCase(unittest.TestCase):
+
   def test_derives_from_Event(self):
-    self.assertTrue(issubclass(HumanSpawnedEvent, Event))
+    self.assertTrue(issubclass(SpawningEvent, Event))
+
+
+class HumanSpawnedEventTestCase(unittest.TestCase):
+
+  def test_derives_from_SpawningEvent(self):
+    self.assertTrue(issubclass(HumanSpawnedEvent, SpawningEvent))
 
   def test_is_registered(self):
     self.assertEqual(
@@ -73,8 +82,9 @@ class HumanSpawnedEventTestCase(unittest.TestCase):
 
 
 class HumanDespawnedEventTestCase(unittest.TestCase):
-  def test_derives_from_Event(self):
-    self.assertTrue(issubclass(HumanDespawnedEvent, Event))
+
+  def test_derives_from_SpawningEvent(self):
+    self.assertTrue(issubclass(HumanDespawnedEvent, SpawningEvent))
 
   def test_is_registered(self):
     self.assertEqual(
@@ -122,8 +132,9 @@ class HumanDespawnedEventTestCase(unittest.TestCase):
 
 
 class AIAircraftDespawnedEventTestCase(unittest.TestCase):
-  def test_derives_from_Event(self):
-    self.assertTrue(issubclass(AIAircraftDespawnedEvent, Event))
+
+  def test_derives_from_SpawningEvent(self):
+    self.assertTrue(issubclass(AIAircraftDespawnedEvent, SpawningEvent))
 
   def test_is_registered(self):
     self.assertEqual(
