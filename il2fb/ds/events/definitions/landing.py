@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 
+from il2fb.commons.actors import AIAircraftActor
 from il2fb.commons.actors import HumanAircraftActor
+
 from il2fb.commons.structures import PrimitiveDataclassMixin
 
 from .base import Event
@@ -30,6 +32,14 @@ class HumanAircraftLandedInfo(LandingInfo):
 
 @export
 @dataclass(frozen=True)
+class AIAircraftLandedInfo(LandingInfo):
+  __slots__ = LandingInfo.__slots__ + ["actor", ]
+
+  actor: AIAircraftActor
+
+
+@export
+@dataclass(frozen=True)
 class LandingEvent(Event):
   category = "landing"
 
@@ -40,3 +50,11 @@ class LandingEvent(Event):
 class HumanAircraftLandedEvent(LandingEvent):
   verbose_name = _("Human aircraft landed")
   data: HumanAircraftLandedInfo
+
+
+@export
+@register
+@dataclass(frozen=True)
+class AIAircraftLandedEvent(LandingEvent):
+  verbose_name = _("AI aircraft landed")
+  data: AIAircraftLandedInfo
