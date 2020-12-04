@@ -28,16 +28,22 @@ class HumanAircraftSpawnedInfo(TimestampMixin, PrimitiveDataclassMixin):
 
 @export
 @dataclass(frozen=True)
-class HumanAircraftDespawnedInfo(TimestampMixin, PositionMixin, PrimitiveDataclassMixin):
-  __slots__ = ["timestamp", "pos", "actor"]
+class DespawningInfo(TimestampMixin, PositionMixin, PrimitiveDataclassMixin):
+  __slots__ = ["timestamp", "pos", ]
+
+
+@export
+@dataclass(frozen=True)
+class HumanAircraftDespawnedInfo(DespawningInfo):
+  __slots__ = DespawningInfo.__slots__ + ["actor", ]
 
   actor: HumanAircraftActor
 
 
 @export
 @dataclass(frozen=True)
-class AIAircraftDespawnedInfo(TimestampMixin, PositionMixin, PrimitiveDataclassMixin):
-  __slots__ = ["timestamp", "pos", "actor"]
+class AIAircraftDespawnedInfo(DespawningInfo):
+  __slots__ = DespawningInfo.__slots__ + ["actor", ]
 
   actor: AIAircraftActor
 
