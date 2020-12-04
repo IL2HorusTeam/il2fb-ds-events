@@ -147,8 +147,9 @@ class AIAircraftDespawnedEventTestCase(unittest.TestCase):
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       actor=AIAircraftActor(
         regiment_id="r01",
-        squadron_index=0,
-        wing_index=0,
+        squadron_id=0,
+        flight_id=0,
+        flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 82.754),
     ))
@@ -161,8 +162,9 @@ class AIAircraftDespawnedEventTestCase(unittest.TestCase):
         'timestamp': '2020-12-31T23:45:59',
         'actor': {
           'regiment_id': 'r01',
-          'squadron_index': 0,
-          'wing_index': 0,
+          'squadron_id': 0,
+          'flight_id': 0,
+          'flight_index': 0,
         },
         'pos': {'x': 71903.14, 'y': 41619.023, 'z': 82.754},
       },
@@ -173,8 +175,9 @@ class AIAircraftDespawnedEventTestCase(unittest.TestCase):
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       actor=AIAircraftActor(
         regiment_id="r01",
-        squadron_index=0,
-        wing_index=0,
+        squadron_id=0,
+        flight_id=0,
+        flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 82.754),
     ))
