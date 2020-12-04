@@ -1,11 +1,13 @@
 from dataclasses import dataclass
 
 from il2fb.commons.actors import HumanAircraftActor
+
 from il2fb.commons.structures import PrimitiveDataclassMixin
 
 from .base import Event
 
 from .mixins import TimestampMixin
+from .mixins import PositionMixin
 
 from .registry import register
 
@@ -30,3 +32,20 @@ class HumanSpawnedEvent(Event):
   category = "spawning"
   verbose_name = _("Human spawned")
   data: HumanSpawnedInfo
+
+
+@export
+@dataclass(frozen=True)
+class HumanDespawnedInfo(TimestampMixin, PositionMixin, PrimitiveDataclassMixin):
+  __slots__ = ["timestamp", "pos", "actor"]
+
+  actor:   HumanAircraftActor
+
+
+@export
+@register
+@dataclass(frozen=True)
+class HumanDespawnedEvent(Event):
+  category = "spawning"
+  verbose_name = _("Human despawned")
+  data: HumanDespawnedInfo
