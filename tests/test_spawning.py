@@ -1,7 +1,9 @@
 import datetime
 import unittest
 
+from il2fb.commons.actors import AIAircraftActor
 from il2fb.commons.actors import HumanAircraftActor
+
 from il2fb.commons.spatial import Point3D
 
 from il2fb.ds.events.definitions.base import Event
@@ -11,6 +13,9 @@ from il2fb.ds.events.definitions.spawning import HumanSpawnedInfo
 
 from il2fb.ds.events.definitions.spawning import HumanDespawnedEvent
 from il2fb.ds.events.definitions.spawning import HumanDespawnedInfo
+
+from il2fb.ds.events.definitions.spawning import AIAircraftDespawnedEvent
+from il2fb.ds.events.definitions.spawning import AIAircraftDespawnedInfo
 
 from il2fb.ds.events.definitions import registry
 
@@ -113,4 +118,56 @@ class HumanDespawnedEventTestCase(unittest.TestCase):
     self.assertEqual(
       testee,
       HumanDespawnedEvent.from_primitive(testee.to_primitive()),
+    )
+
+
+class AIAircraftDespawnedEventTestCase(unittest.TestCase):
+  def test_derives_from_Event(self):
+    self.assertTrue(issubclass(AIAircraftDespawnedEvent, Event))
+
+  def test_is_registered(self):
+    self.assertEqual(
+      registry.get_class_by_name("AIAircraftDespawnedEvent"),
+      AIAircraftDespawnedEvent,
+    )
+
+  def test_to_primitive(self):
+    testee = AIAircraftDespawnedEvent(AIAircraftDespawnedInfo(
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
+      actor=AIAircraftActor(
+        regiment_id="r01",
+        squadron_index=0,
+        wing_index=0,
+      ),
+      pos=Point3D(71903.14, 41619.023, 82.754),
+    ))
+    self.assertEqual(testee.to_primitive(), {
+      'category': 'spawning',
+      'name': 'AIAircraftDespawnedEvent',
+      'verbose_name': 'AI aircraft despawned',
+      'help_text': None,
+      'data': {
+        'timestamp': '2020-12-31T23:45:59',
+        'actor': {
+          'regiment_id': 'r01',
+          'squadron_index': 0,
+          'wing_index': 0,
+        },
+        'pos': {'x': 71903.14, 'y': 41619.023, 'z': 82.754},
+      },
+    })
+
+  def test_from_primitive(self):
+    testee = AIAircraftDespawnedEvent(AIAircraftDespawnedInfo(
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
+      actor=AIAircraftActor(
+        regiment_id="r01",
+        squadron_index=0,
+        wing_index=0,
+      ),
+      pos=Point3D(71903.14, 41619.023, 82.754),
+    ))
+    self.assertEqual(
+      testee,
+      AIAircraftDespawnedEvent.from_primitive(testee.to_primitive()),
     )

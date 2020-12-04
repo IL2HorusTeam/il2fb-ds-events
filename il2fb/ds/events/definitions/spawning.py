@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+from il2fb.commons.actors import AIAircraftActor
 from il2fb.commons.actors import HumanAircraftActor
 
 from il2fb.commons.structures import PrimitiveDataclassMixin
@@ -39,7 +40,7 @@ class HumanSpawnedEvent(Event):
 class HumanDespawnedInfo(TimestampMixin, PositionMixin, PrimitiveDataclassMixin):
   __slots__ = ["timestamp", "pos", "actor"]
 
-  actor:   HumanAircraftActor
+  actor: HumanAircraftActor
 
 
 @export
@@ -49,3 +50,20 @@ class HumanDespawnedEvent(Event):
   category = "spawning"
   verbose_name = _("Human despawned")
   data: HumanDespawnedInfo
+
+
+@export
+@dataclass(frozen=True)
+class AIAircraftDespawnedInfo(TimestampMixin, PositionMixin, PrimitiveDataclassMixin):
+  __slots__ = ["timestamp", "pos", "actor"]
+
+  actor: AIAircraftActor
+
+
+@export
+@register
+@dataclass(frozen=True)
+class AIAircraftDespawnedEvent(Event):
+  category = "spawning"
+  verbose_name = _("AI aircraft despawned")
+  data: AIAircraftDespawnedInfo
