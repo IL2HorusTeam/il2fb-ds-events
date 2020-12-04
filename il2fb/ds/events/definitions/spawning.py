@@ -18,7 +18,7 @@ from ._translations import gettext_lazy as _
 
 @export
 @dataclass(frozen=True)
-class HumanSpawnedInfo(TimestampMixin, PrimitiveDataclassMixin):
+class HumanAircraftSpawnedInfo(TimestampMixin, PrimitiveDataclassMixin):
   __slots__ = ["timestamp", "actor", "weapons", "fuel"]
 
   actor:   HumanAircraftActor
@@ -28,7 +28,7 @@ class HumanSpawnedInfo(TimestampMixin, PrimitiveDataclassMixin):
 
 @export
 @dataclass(frozen=True)
-class HumanDespawnedInfo(TimestampMixin, PositionMixin, PrimitiveDataclassMixin):
+class HumanAircraftDespawnedInfo(TimestampMixin, PositionMixin, PrimitiveDataclassMixin):
   __slots__ = ["timestamp", "pos", "actor"]
 
   actor: HumanAircraftActor
@@ -51,17 +51,17 @@ class SpawningEvent(Event):
 @export
 @register
 @dataclass(frozen=True)
-class HumanSpawnedEvent(SpawningEvent):
-  verbose_name = _("Human spawned")
-  data: HumanSpawnedInfo
+class HumanAircraftSpawnedEvent(SpawningEvent):
+  verbose_name = _("Human aircraft spawned")
+  data: HumanAircraftSpawnedInfo
 
 
 @export
 @register
 @dataclass(frozen=True)
-class HumanDespawnedEvent(SpawningEvent):
-  verbose_name = _("Human despawned")
-  data: HumanDespawnedInfo
+class HumanAircraftDespawnedEvent(SpawningEvent):
+  verbose_name = _("Human aircraft despawned")
+  data: HumanAircraftDespawnedInfo
 
 
 @export

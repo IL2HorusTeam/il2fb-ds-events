@@ -6,25 +6,25 @@ from il2fb.commons.spatial import Point3D
 
 from il2fb.ds.events.definitions.base import Event
 
-from il2fb.ds.events.definitions.smokes import HumanToggledWingtipSmokesEvent
-from il2fb.ds.events.definitions.smokes import HumanToggledWingtipSmokesInfo
+from il2fb.ds.events.definitions.smokes import HumanAircraftToggledWingtipSmokesEvent
+from il2fb.ds.events.definitions.smokes import HumanAircraftToggledWingtipSmokesInfo
 
 from il2fb.ds.events.definitions import registry
 
 
-class HumanToggledWingtipSmokesEventTestCase(unittest.TestCase):
+class HumanAircraftToggledWingtipSmokesEventTestCase(unittest.TestCase):
 
   def test_derives_from_Event(self):
-    self.assertTrue(issubclass(HumanToggledWingtipSmokesEvent, Event))
+    self.assertTrue(issubclass(HumanAircraftToggledWingtipSmokesEvent, Event))
 
   def test_is_registered(self):
     self.assertEqual(
-      registry.get_class_by_name("HumanToggledWingtipSmokesEvent"),
-      HumanToggledWingtipSmokesEvent,
+      registry.get_class_by_name("HumanAircraftToggledWingtipSmokesEvent"),
+      HumanAircraftToggledWingtipSmokesEvent,
     )
 
   def test_to_primitive(self):
-    testee = HumanToggledWingtipSmokesEvent(HumanToggledWingtipSmokesInfo(
+    testee = HumanAircraftToggledWingtipSmokesEvent(HumanAircraftToggledWingtipSmokesInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       state=True,
       actor=HumanAircraftActor(
@@ -35,8 +35,8 @@ class HumanToggledWingtipSmokesEventTestCase(unittest.TestCase):
     ))
     self.assertEqual(testee.to_primitive(), {
       'category': 'smokes',
-      'name': 'HumanToggledWingtipSmokesEvent',
-      'verbose_name': 'Human toggled wingtip smokes',
+      'name': 'HumanAircraftToggledWingtipSmokesEvent',
+      'verbose_name': 'Human aircraft toggled wingtip smokes',
       'help_text': None,
       'data': {
         'timestamp': '2020-12-31T23:45:59',
@@ -50,7 +50,7 @@ class HumanToggledWingtipSmokesEventTestCase(unittest.TestCase):
     })
 
   def test_from_primitive(self):
-    testee = HumanToggledWingtipSmokesEvent(HumanToggledWingtipSmokesInfo(
+    testee = HumanAircraftToggledWingtipSmokesEvent(HumanAircraftToggledWingtipSmokesInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       state=True,
       actor=HumanAircraftActor(
@@ -61,5 +61,5 @@ class HumanToggledWingtipSmokesEventTestCase(unittest.TestCase):
     ))
     self.assertEqual(
       testee,
-      HumanToggledWingtipSmokesEvent.from_primitive(testee.to_primitive()),
+      HumanAircraftToggledWingtipSmokesEvent.from_primitive(testee.to_primitive()),
     )

@@ -16,7 +16,7 @@ from ._translations import gettext_lazy as _
 
 @export
 @dataclass(frozen=True)
-class HumanToggledLandingLightsInfo(TimestampMixin, PositionMixin, PrimitiveDataclassMixin):
+class HumanAircraftToggledLandingLightsInfo(TimestampMixin, PositionMixin, PrimitiveDataclassMixin):
   __slots__ = ["timestamp", "pos", "actor", "state", ]
 
   actor: HumanAircraftActor
@@ -26,7 +26,7 @@ class HumanToggledLandingLightsInfo(TimestampMixin, PositionMixin, PrimitiveData
 @export
 @register
 @dataclass(frozen=True)
-class HumanToggledLandingLightsEvent(Event):
+class HumanAircraftToggledLandingLightsEvent(Event):
   category = "lights"
-  verbose_name = _("Human toggled landing lights")
-  data: HumanToggledLandingLightsInfo
+  verbose_name = _("Human aircraft toggled landing lights")
+  data: HumanAircraftToggledLandingLightsInfo

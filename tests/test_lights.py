@@ -6,25 +6,25 @@ from il2fb.commons.spatial import Point3D
 
 from il2fb.ds.events.definitions.base import Event
 
-from il2fb.ds.events.definitions.lights import HumanToggledLandingLightsEvent
-from il2fb.ds.events.definitions.lights import HumanToggledLandingLightsInfo
+from il2fb.ds.events.definitions.lights import HumanAircraftToggledLandingLightsEvent
+from il2fb.ds.events.definitions.lights import HumanAircraftToggledLandingLightsInfo
 
 from il2fb.ds.events.definitions import registry
 
 
-class HumanToggledLandingLightsEventTestCase(unittest.TestCase):
+class HumanAircraftToggledLandingLightsEventTestCase(unittest.TestCase):
 
   def test_derives_from_Event(self):
-    self.assertTrue(issubclass(HumanToggledLandingLightsEvent, Event))
+    self.assertTrue(issubclass(HumanAircraftToggledLandingLightsEvent, Event))
 
   def test_is_registered(self):
     self.assertEqual(
-      registry.get_class_by_name("HumanToggledLandingLightsEvent"),
-      HumanToggledLandingLightsEvent,
+      registry.get_class_by_name("HumanAircraftToggledLandingLightsEvent"),
+      HumanAircraftToggledLandingLightsEvent,
     )
 
   def test_to_primitive(self):
-    testee = HumanToggledLandingLightsEvent(HumanToggledLandingLightsInfo(
+    testee = HumanAircraftToggledLandingLightsEvent(HumanAircraftToggledLandingLightsInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       state=True,
       actor=HumanAircraftActor(
@@ -35,8 +35,8 @@ class HumanToggledLandingLightsEventTestCase(unittest.TestCase):
     ))
     self.assertEqual(testee.to_primitive(), {
       'category': 'lights',
-      'name': 'HumanToggledLandingLightsEvent',
-      'verbose_name': 'Human toggled landing lights',
+      'name': 'HumanAircraftToggledLandingLightsEvent',
+      'verbose_name': 'Human aircraft toggled landing lights',
       'help_text': None,
       'data': {
         'timestamp': '2020-12-31T23:45:59',
@@ -50,7 +50,7 @@ class HumanToggledLandingLightsEventTestCase(unittest.TestCase):
     })
 
   def test_from_primitive(self):
-    testee = HumanToggledLandingLightsEvent(HumanToggledLandingLightsInfo(
+    testee = HumanAircraftToggledLandingLightsEvent(HumanAircraftToggledLandingLightsInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       state=True,
       actor=HumanAircraftActor(
@@ -61,5 +61,5 @@ class HumanToggledLandingLightsEventTestCase(unittest.TestCase):
     ))
     self.assertEqual(
       testee,
-      HumanToggledLandingLightsEvent.from_primitive(testee.to_primitive()),
+      HumanAircraftToggledLandingLightsEvent.from_primitive(testee.to_primitive()),
     )

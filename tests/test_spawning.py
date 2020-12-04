@@ -10,11 +10,11 @@ from il2fb.ds.events.definitions.base import Event
 
 from il2fb.ds.events.definitions.spawning import SpawningEvent
 
-from il2fb.ds.events.definitions.spawning import HumanSpawnedEvent
-from il2fb.ds.events.definitions.spawning import HumanSpawnedInfo
+from il2fb.ds.events.definitions.spawning import HumanAircraftSpawnedEvent
+from il2fb.ds.events.definitions.spawning import HumanAircraftSpawnedInfo
 
-from il2fb.ds.events.definitions.spawning import HumanDespawnedEvent
-from il2fb.ds.events.definitions.spawning import HumanDespawnedInfo
+from il2fb.ds.events.definitions.spawning import HumanAircraftDespawnedEvent
+from il2fb.ds.events.definitions.spawning import HumanAircraftDespawnedInfo
 
 from il2fb.ds.events.definitions.spawning import AIAircraftDespawnedEvent
 from il2fb.ds.events.definitions.spawning import AIAircraftDespawnedInfo
@@ -28,19 +28,19 @@ class SpawningEventTestCase(unittest.TestCase):
     self.assertTrue(issubclass(SpawningEvent, Event))
 
 
-class HumanSpawnedEventTestCase(unittest.TestCase):
+class HumanAircraftSpawnedEventTestCase(unittest.TestCase):
 
   def test_derives_from_SpawningEvent(self):
-    self.assertTrue(issubclass(HumanSpawnedEvent, SpawningEvent))
+    self.assertTrue(issubclass(HumanAircraftSpawnedEvent, SpawningEvent))
 
   def test_is_registered(self):
     self.assertEqual(
-      registry.get_class_by_name("HumanSpawnedEvent"),
-      HumanSpawnedEvent,
+      registry.get_class_by_name("HumanAircraftSpawnedEvent"),
+      HumanAircraftSpawnedEvent,
     )
 
   def test_to_primitive(self):
-    testee = HumanSpawnedEvent(HumanSpawnedInfo(
+    testee = HumanAircraftSpawnedEvent(HumanAircraftSpawnedInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       actor=HumanAircraftActor(
         callsign="TheUser",
@@ -51,8 +51,8 @@ class HumanSpawnedEventTestCase(unittest.TestCase):
     ))
     self.assertEqual(testee.to_primitive(), {
       'category': 'spawning',
-      'name': 'HumanSpawnedEvent',
-      'verbose_name': 'Human spawned',
+      'name': 'HumanAircraftSpawnedEvent',
+      'verbose_name': 'Human aircraft spawned',
       'help_text': None,
       'data': {
         'timestamp': '2020-12-31T23:45:59',
@@ -66,7 +66,7 @@ class HumanSpawnedEventTestCase(unittest.TestCase):
     })
 
   def test_from_primitive(self):
-    testee = HumanSpawnedEvent(HumanSpawnedInfo(
+    testee = HumanAircraftSpawnedEvent(HumanAircraftSpawnedInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       actor=HumanAircraftActor(
         callsign="TheUser",
@@ -77,23 +77,23 @@ class HumanSpawnedEventTestCase(unittest.TestCase):
     ))
     self.assertEqual(
       testee,
-      HumanSpawnedEvent.from_primitive(testee.to_primitive()),
+      HumanAircraftSpawnedEvent.from_primitive(testee.to_primitive()),
     )
 
 
-class HumanDespawnedEventTestCase(unittest.TestCase):
+class HumanAircraftDespawnedEventTestCase(unittest.TestCase):
 
   def test_derives_from_SpawningEvent(self):
-    self.assertTrue(issubclass(HumanDespawnedEvent, SpawningEvent))
+    self.assertTrue(issubclass(HumanAircraftDespawnedEvent, SpawningEvent))
 
   def test_is_registered(self):
     self.assertEqual(
-      registry.get_class_by_name("HumanDespawnedEvent"),
-      HumanDespawnedEvent,
+      registry.get_class_by_name("HumanAircraftDespawnedEvent"),
+      HumanAircraftDespawnedEvent,
     )
 
   def test_to_primitive(self):
-    testee = HumanDespawnedEvent(HumanDespawnedInfo(
+    testee = HumanAircraftDespawnedEvent(HumanAircraftDespawnedInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       actor=HumanAircraftActor(
         callsign="TheUser",
@@ -103,8 +103,8 @@ class HumanDespawnedEventTestCase(unittest.TestCase):
     ))
     self.assertEqual(testee.to_primitive(), {
       'category': 'spawning',
-      'name': 'HumanDespawnedEvent',
-      'verbose_name': 'Human despawned',
+      'name': 'HumanAircraftDespawnedEvent',
+      'verbose_name': 'Human aircraft despawned',
       'help_text': None,
       'data': {
         'timestamp': '2020-12-31T23:45:59',
@@ -117,7 +117,7 @@ class HumanDespawnedEventTestCase(unittest.TestCase):
     })
 
   def test_from_primitive(self):
-    testee = HumanDespawnedEvent(HumanDespawnedInfo(
+    testee = HumanAircraftDespawnedEvent(HumanAircraftDespawnedInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       actor=HumanAircraftActor(
         callsign="TheUser",
@@ -127,7 +127,7 @@ class HumanDespawnedEventTestCase(unittest.TestCase):
     ))
     self.assertEqual(
       testee,
-      HumanDespawnedEvent.from_primitive(testee.to_primitive()),
+      HumanAircraftDespawnedEvent.from_primitive(testee.to_primitive()),
     )
 
 
