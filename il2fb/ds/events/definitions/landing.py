@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from il2fb.commons.actors import Actor
 from il2fb.commons.actors import AIAircraftActor
 from il2fb.commons.actors import HumanAircraftActor
+from il2fb.commons.actors import UnknownActor
 
 from il2fb.commons.structures import PrimitiveDataclassMixin
 
@@ -39,6 +40,12 @@ class AIAircraftLandedInfo(LandingInfo):
 
 @export
 @dataclass(frozen=True)
+class UnknownActorLandedInfo(LandingInfo):
+  actor: UnknownActor
+
+
+@export
+@dataclass(frozen=True)
 class LandingEvent(Event):
   category = "landing"
 
@@ -57,3 +64,11 @@ class HumanAircraftLandedEvent(LandingEvent):
 class AIAircraftLandedEvent(LandingEvent):
   verbose_name = _("AI aircraft landed")
   data: AIAircraftLandedInfo
+
+
+@export
+@register
+@dataclass(frozen=True)
+class UnknownActorLandedEvent(LandingEvent):
+  verbose_name = _("Unknown actor landed")
+  data: UnknownActorLandedInfo

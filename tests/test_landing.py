@@ -3,6 +3,7 @@ import unittest
 
 from il2fb.commons.actors import AIAircraftActor
 from il2fb.commons.actors import HumanAircraftActor
+from il2fb.commons.actors import UnknownActor
 
 from il2fb.commons.spatial import Point3D
 
@@ -15,6 +16,9 @@ from il2fb.ds.events.definitions.landing import HumanAircraftLandedInfo
 
 from il2fb.ds.events.definitions.landing import AIAircraftLandedEvent
 from il2fb.ds.events.definitions.landing import AIAircraftLandedInfo
+
+from il2fb.ds.events.definitions.landing import UnknownActorLandedEvent
+from il2fb.ds.events.definitions.landing import UnknownActorLandedInfo
 
 from il2fb.ds.events.definitions import registry
 
@@ -128,4 +132,51 @@ class AIAircraftLandedEventTestCase(unittest.TestCase):
     self.assertEqual(
       testee,
       AIAircraftLandedEvent.from_primitive(testee.to_primitive()),
+    )
+
+
+class UnknownActorLandedEventTestCase(unittest.TestCase):
+
+  def test_derives_from_LandingEvent(self):
+    self.assertTrue(issubclass(UnknownActorLandedEvent, LandingEvent))
+
+  def test_is_registered(self):
+    self.assertEqual(
+      registry.get_class_by_name("UnknownActorLandedEvent"),
+      UnknownActorLandedEvent,
+    )
+
+  def test_to_primitive(self):
+    testee = UnknownActorLandedEvent(UnknownActorLandedInfo(
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
+      actor=UnknownActor(
+        id="foo",
+      ),
+      pos=Point3D(71903.14, 41619.023, 80.754),
+    ))
+    self.assertEqual(testee.to_primitive(), {
+      'category': 'landing',
+      'name': 'UnknownActorLandedEvent',
+      'verbose_name': 'Unknown actor landed',
+      'help_text': None,
+      'data': {
+        'timestamp': '2020-12-31T23:45:59',
+        'actor': {
+          'id': 'foo',
+        },
+        'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
+      },
+    })
+
+  def test_from_primitive(self):
+    testee = UnknownActorLandedEvent(UnknownActorLandedInfo(
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
+      actor=UnknownActor(
+        id="foo",
+      ),
+      pos=Point3D(71903.14, 41619.023, 80.754),
+    ))
+    self.assertEqual(
+      testee,
+      UnknownActorLandedEvent.from_primitive(testee.to_primitive()),
     )
