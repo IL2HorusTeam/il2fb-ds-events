@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from il2fb.commons.actors import Actor
 from il2fb.commons.actors import AIAircraftActor
 from il2fb.commons.actors import HumanAircraftActor
+from il2fb.commons.actors import UnknownActor
 
 from il2fb.commons.structures import PrimitiveDataclassMixin
 
@@ -49,6 +50,12 @@ class AIAircraftDespawnedInfo(DespawningInfo):
 
 @export
 @dataclass(frozen=True)
+class UnknownActorDespawnedInfo(DespawningInfo):
+  actor: UnknownActor
+
+
+@export
+@dataclass(frozen=True)
 class SpawningEvent(Event):
   category = "spawning"
 
@@ -75,3 +82,11 @@ class HumanAircraftDespawnedEvent(SpawningEvent):
 class AIAircraftDespawnedEvent(SpawningEvent):
   verbose_name = _("AI aircraft despawned")
   data: AIAircraftDespawnedInfo
+
+
+@export
+@register
+@dataclass(frozen=True)
+class UnknownActorDespawnedEvent(SpawningEvent):
+  verbose_name = _("Unknown actor despawned")
+  data: UnknownActorDespawnedInfo
