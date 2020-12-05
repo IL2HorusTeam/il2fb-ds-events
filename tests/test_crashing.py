@@ -62,7 +62,7 @@ class HumanAircraftCrashedEventTestCase(unittest.TestCase):
       pos=Point3D(71903.14, 41619.023, 80.754),
     ))
     self.assertEqual(testee.to_primitive(), {
-      'category': 'crashing',
+      'category': 'crash',
       'name': 'HumanAircraftCrashedEvent',
       'verbose_name': 'Human aircraft crashed',
       'help_text': None,
@@ -114,7 +114,7 @@ class AIAircraftCrashedEventTestCase(unittest.TestCase):
       pos=Point3D(71903.14, 41619.023, 80.754),
     ))
     self.assertEqual(testee.to_primitive(), {
-      'category': 'crashing',
+      'category': 'crash',
       'name': 'AIAircraftCrashedEvent',
       'verbose_name': 'AI aircraft crashed',
       'help_text': None,
@@ -167,7 +167,7 @@ class MovingUnitCrashedEventTestCase(unittest.TestCase):
       pos=Point3D(71903.14, 41619.023, 80.754),
     ))
     self.assertEqual(testee.to_primitive(), {
-      'category': 'crashing',
+      'category': 'crash',
       'name': 'MovingUnitCrashedEvent',
       'verbose_name': 'Moving unit crashed',
       'help_text': None,
@@ -215,7 +215,7 @@ class MovingUnitMemberCrashedEventTestCase(unittest.TestCase):
       pos=Point3D(71903.14, 41619.023, 80.754),
     ))
     self.assertEqual(testee.to_primitive(), {
-      'category': 'crashing',
+      'category': 'crash',
       'name': 'MovingUnitMemberCrashedEvent',
       'verbose_name': 'Moving unit member crashed',
       'help_text': None,
@@ -264,7 +264,7 @@ class StationaryUnitCrashedEventTestCase(unittest.TestCase):
       pos=Point3D(71903.14, 41619.023, 80.754),
     ))
     self.assertEqual(testee.to_primitive(), {
-      'category': 'crashing',
+      'category': 'crash',
       'name': 'StationaryUnitCrashedEvent',
       'verbose_name': 'Stationary unit crashed',
       'help_text': None,
@@ -311,7 +311,7 @@ class UnknownActorCrashedEventTestCase(unittest.TestCase):
       pos=Point3D(71903.14, 41619.023, 80.754),
     ))
     self.assertEqual(testee.to_primitive(), {
-      'category': 'crashing',
+      'category': 'crash',
       'name': 'UnknownActorCrashedEvent',
       'verbose_name': 'Unknown actor crashed',
       'help_text': None,

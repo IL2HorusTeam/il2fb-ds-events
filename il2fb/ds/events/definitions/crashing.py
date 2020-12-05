@@ -68,7 +68,7 @@ class UnknownActorCrashedInfo(CrashingInfo):
 @export
 @dataclass(frozen=True)
 class CrashingEvent(Event):
-  category = "crashing"
+  category = "crash"
 
 
 @export
