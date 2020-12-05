@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+from il2fb.commons.actors import Actor
 from il2fb.commons.actors import AIAircraftActor
 from il2fb.commons.actors import HumanAircraftActor
 
@@ -19,22 +20,20 @@ from ._translations import gettext_lazy as _
 @export
 @dataclass(frozen=True)
 class LandingInfo(TimestampMixin, PositionMixin, PrimitiveDataclassMixin):
-  __slots__ = ["timestamp", "pos", ]
+  __slots__ = ["timestamp", "pos", "actor", ]
+
+  actor: Actor
 
 
 @export
 @dataclass(frozen=True)
 class HumanAircraftLandedInfo(LandingInfo):
-  __slots__ = LandingInfo.__slots__ + ["actor", ]
-
   actor: HumanAircraftActor
 
 
 @export
 @dataclass(frozen=True)
 class AIAircraftLandedInfo(LandingInfo):
-  __slots__ = LandingInfo.__slots__ + ["actor", ]
-
   actor: AIAircraftActor
 
 
