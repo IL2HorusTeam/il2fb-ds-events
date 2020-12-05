@@ -57,7 +57,7 @@ class UnknownActorDespawnedInfo(DespawningInfo):
 @export
 @dataclass(frozen=True)
 class SpawningEvent(Event):
-  category = "spawning"
+  category = "spawn"
 
 
 @export
@@ -69,9 +69,15 @@ class HumanAircraftSpawnedEvent(SpawningEvent):
 
 
 @export
+@dataclass(frozen=True)
+class DespawningEvent(Event):
+  category = "despawn"
+
+
+@export
 @register
 @dataclass(frozen=True)
-class HumanAircraftDespawnedEvent(SpawningEvent):
+class HumanAircraftDespawnedEvent(DespawningEvent):
   verbose_name = _("Human aircraft despawned")
   data: HumanAircraftDespawnedInfo
 
@@ -79,7 +85,7 @@ class HumanAircraftDespawnedEvent(SpawningEvent):
 @export
 @register
 @dataclass(frozen=True)
-class AIAircraftDespawnedEvent(SpawningEvent):
+class AIAircraftDespawnedEvent(DespawningEvent):
   verbose_name = _("AI aircraft despawned")
   data: AIAircraftDespawnedInfo
 
@@ -87,6 +93,6 @@ class AIAircraftDespawnedEvent(SpawningEvent):
 @export
 @register
 @dataclass(frozen=True)
-class UnknownActorDespawnedEvent(SpawningEvent):
+class UnknownActorDespawnedEvent(DespawningEvent):
   verbose_name = _("Unknown actor despawned")
   data: UnknownActorDespawnedInfo
