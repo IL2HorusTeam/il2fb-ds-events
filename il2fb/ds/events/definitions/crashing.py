@@ -6,7 +6,6 @@ from il2fb.commons.actors import HumanAircraftActor
 from il2fb.commons.actors import MovingUnitActor
 from il2fb.commons.actors import MovingUnitMemberActor
 from il2fb.commons.actors import StationaryUnitActor
-from il2fb.commons.actors import UnknownActor
 
 from il2fb.commons.structures import PrimitiveDataclassMixin
 
@@ -61,12 +60,6 @@ class StationaryUnitCrashedInfo(CrashingInfo):
 
 @export
 @dataclass(frozen=True)
-class UnknownActorCrashedInfo(CrashingInfo):
-  actor: UnknownActor
-
-
-@export
-@dataclass(frozen=True)
 class CrashingEvent(Event):
   category = "crash"
 
@@ -109,11 +102,3 @@ class MovingUnitMemberCrashedEvent(CrashingEvent):
 class StationaryUnitCrashedEvent(CrashingEvent):
   verbose_name = _("Stationary unit crashed")
   data: StationaryUnitCrashedInfo
-
-
-@export
-@register
-@dataclass(frozen=True)
-class UnknownActorCrashedEvent(CrashingEvent):
-  verbose_name = _("Unknown actor crashed")
-  data: UnknownActorCrashedInfo

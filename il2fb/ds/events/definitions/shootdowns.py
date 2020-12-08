@@ -10,7 +10,6 @@ from il2fb.commons.actors import MovingUnitActor
 from il2fb.commons.actors import MovingUnitMemberActor
 from il2fb.commons.actors import ObjectActor
 from il2fb.commons.actors import StationaryUnitActor
-from il2fb.commons.actors import UnknownActor
 
 from il2fb.commons.structures import PrimitiveDataclassMixin
 
@@ -249,21 +248,6 @@ class AIAircraftShotdownByParatrooperEvent(ShotdownEvent):
 
 @export
 @dataclass(frozen=True)
-class AIAircraftShotdownByUnknownActorInfo(ShotdownBySingleInfo):
-  target:   AIAircraftActor
-  attacker: UnknownActor
-
-
-@export
-@register
-@dataclass(frozen=True)
-class AIAircraftShotdownByUnknownActorEvent(ShotdownEvent):
-  verbose_name = _("AI aircraft shot down by unknown actor")
-  data: AIAircraftShotdownByUnknownActorInfo
-
-
-@export
-@dataclass(frozen=True)
 class HumanAircraftShotdownByAIAircraftInfo(ShotdownBySingleInfo):
   target:   HumanAircraftActor
   attacker: AIAircraftActor
@@ -408,21 +392,6 @@ class HumanAircraftShotdownByParatrooperInfo(ShotdownInfo):
 class HumanAircraftShotdownByParatrooperEvent(ShotdownEvent):
   verbose_name = _("Human aircraft shot down by paratrooper")
   data: HumanAircraftShotdownByParatrooperInfo
-
-
-@export
-@dataclass(frozen=True)
-class HumanAircraftShotdownByUnknownActorInfo(ShotdownBySingleInfo):
-  target:   HumanAircraftActor
-  attacker: UnknownActor
-
-
-@export
-@register
-@dataclass(frozen=True)
-class HumanAircraftShotdownByUnknownActorEvent(ShotdownEvent):
-  verbose_name = _("Human aircraft shot down by unknown actor")
-  data: HumanAircraftShotdownByUnknownActorInfo
 
 
 @export

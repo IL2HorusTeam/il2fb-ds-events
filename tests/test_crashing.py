@@ -6,7 +6,6 @@ from il2fb.commons.actors import HumanAircraftActor
 from il2fb.commons.actors import MovingUnitActor
 from il2fb.commons.actors import MovingUnitMemberActor
 from il2fb.commons.actors import StationaryUnitActor
-from il2fb.commons.actors import UnknownActor
 
 from il2fb.commons.spatial import Point3D
 
@@ -28,9 +27,6 @@ from il2fb.ds.events.definitions.crashing import MovingUnitMemberCrashedInfo
 
 from il2fb.ds.events.definitions.crashing import StationaryUnitCrashedEvent
 from il2fb.ds.events.definitions.crashing import StationaryUnitCrashedInfo
-
-from il2fb.ds.events.definitions.crashing import UnknownActorCrashedEvent
-from il2fb.ds.events.definitions.crashing import UnknownActorCrashedInfo
 
 from il2fb.ds.events.definitions import registry
 
@@ -288,51 +284,4 @@ class StationaryUnitCrashedEventTestCase(unittest.TestCase):
     self.assertEqual(
       testee,
       StationaryUnitCrashedEvent.from_primitive(testee.to_primitive()),
-    )
-
-
-class UnknownActorCrashedEventTestCase(unittest.TestCase):
-
-  def test_derives_from_CrashingEvent(self):
-    self.assertTrue(issubclass(UnknownActorCrashedEvent, CrashingEvent))
-
-  def test_is_registered(self):
-    self.assertEqual(
-      registry.get_class_by_name("UnknownActorCrashedEvent"),
-      UnknownActorCrashedEvent,
-    )
-
-  def test_to_primitive(self):
-    testee = UnknownActorCrashedEvent(UnknownActorCrashedInfo(
-      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
-      actor=UnknownActor(
-        id="foo",
-      ),
-      pos=Point3D(71903.14, 41619.023, 80.754),
-    ))
-    self.assertEqual(testee.to_primitive(), {
-      'category': 'crash',
-      'name': 'UnknownActorCrashedEvent',
-      'verbose_name': 'Unknown actor crashed',
-      'help_text': None,
-      'data': {
-        'timestamp': '2020-12-31T23:45:59',
-        'actor': {
-          'id': 'foo',
-        },
-        'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
-      },
-    })
-
-  def test_from_primitive(self):
-    testee = UnknownActorCrashedEvent(UnknownActorCrashedInfo(
-      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
-      actor=UnknownActor(
-        id="foo",
-      ),
-      pos=Point3D(71903.14, 41619.023, 80.754),
-    ))
-    self.assertEqual(
-      testee,
-      UnknownActorCrashedEvent.from_primitive(testee.to_primitive()),
     )

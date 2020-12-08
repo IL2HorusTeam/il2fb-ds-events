@@ -9,7 +9,6 @@ from il2fb.commons.actors import MovingUnitActor
 from il2fb.commons.actors import MovingUnitMemberActor
 from il2fb.commons.actors import ObjectActor
 from il2fb.commons.actors import StationaryUnitActor
-from il2fb.commons.actors import UnknownActor
 
 from il2fb.commons.spatial import Point3D
 
@@ -57,9 +56,6 @@ from il2fb.ds.events.definitions.shootdowns import AIAircraftShotdownByTreeInfo
 from il2fb.ds.events.definitions.shootdowns import AIAircraftShotdownByParatrooperEvent
 from il2fb.ds.events.definitions.shootdowns import AIAircraftShotdownByParatrooperInfo
 
-from il2fb.ds.events.definitions.shootdowns import AIAircraftShotdownByUnknownActorEvent
-from il2fb.ds.events.definitions.shootdowns import AIAircraftShotdownByUnknownActorInfo
-
 from il2fb.ds.events.definitions.shootdowns import HumanAircraftShotdownByAIAircraftEvent
 from il2fb.ds.events.definitions.shootdowns import HumanAircraftShotdownByAIAircraftInfo
 
@@ -89,9 +85,6 @@ from il2fb.ds.events.definitions.shootdowns import HumanAircraftShotdownByTreeIn
 
 from il2fb.ds.events.definitions.shootdowns import HumanAircraftShotdownByParatrooperEvent
 from il2fb.ds.events.definitions.shootdowns import HumanAircraftShotdownByParatrooperInfo
-
-from il2fb.ds.events.definitions.shootdowns import HumanAircraftShotdownByUnknownActorEvent
-from il2fb.ds.events.definitions.shootdowns import HumanAircraftShotdownByUnknownActorInfo
 
 from il2fb.ds.events.definitions.shootdowns import AIAircraftShotdownByAIAircraftAndAIAircraftEvent
 from il2fb.ds.events.definitions.shootdowns import AIAircraftShotdownByAIAircraftAndAIAircraftInfo
@@ -985,71 +978,6 @@ class AIAircraftShotdownByParatrooperEventTestCase(unittest.TestCase):
     )
 
 
-class AIAircraftShotdownByUnknownActorEventTestCase(unittest.TestCase):
-
-  def test_derives_from_ShootdownEvent(self):
-    self.assertTrue(issubclass(AIAircraftShotdownByUnknownActorEvent, ShotdownEvent))
-
-  def test_is_registered(self):
-    self.assertEqual(
-      registry.get_class_by_name("AIAircraftShotdownByUnknownActorEvent"),
-      AIAircraftShotdownByUnknownActorEvent,
-    )
-
-  def test_to_primitive(self):
-    testee = AIAircraftShotdownByUnknownActorEvent(AIAircraftShotdownByUnknownActorInfo(
-      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
-      target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
-        flight_index=0,
-      ),
-      attacker=UnknownActor(
-        id='foo',
-      ),
-      pos=Point3D(71903.14, 41619.023, 80.754),
-    ))
-    self.assertEqual(testee.to_primitive(), {
-      'category': 'shotdown',
-      'name': 'AIAircraftShotdownByUnknownActorEvent',
-      'verbose_name': 'AI aircraft shot down by unknown actor',
-      'help_text': None,
-      'data': {
-        'timestamp': '2020-12-31T23:45:59',
-        'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
-          'flight_index': 0,
-        },
-        'attacker': {
-          'id': 'foo',
-        },
-        'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
-      },
-    })
-
-  def test_from_primitive(self):
-    testee = AIAircraftShotdownByUnknownActorEvent(AIAircraftShotdownByUnknownActorInfo(
-      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
-      target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
-        flight_index=0,
-      ),
-      attacker=UnknownActor(
-        id='foo',
-      ),
-      pos=Point3D(71903.14, 41619.023, 80.754),
-    ))
-    self.assertEqual(
-      testee,
-      AIAircraftShotdownByUnknownActorEvent.from_primitive(testee.to_primitive()),
-    )
-
-
 class HumanAircraftShotdownByAIAircraftEventTestCase(unittest.TestCase):
 
   def test_derives_from_ShootdownEvent(self):
@@ -1634,65 +1562,6 @@ class HumanAircraftShotdownByParatrooperEventTestCase(unittest.TestCase):
     self.assertEqual(
       testee,
       HumanAircraftShotdownByParatrooperEvent.from_primitive(testee.to_primitive()),
-    )
-
-
-class HumanAircraftShotdownByUnknownActorEventTestCase(unittest.TestCase):
-
-  def test_derives_from_ShootdownEvent(self):
-    self.assertTrue(issubclass(HumanAircraftShotdownByUnknownActorEvent, ShotdownEvent))
-
-  def test_is_registered(self):
-    self.assertEqual(
-      registry.get_class_by_name("HumanAircraftShotdownByUnknownActorEvent"),
-      HumanAircraftShotdownByUnknownActorEvent,
-    )
-
-  def test_to_primitive(self):
-    testee = HumanAircraftShotdownByUnknownActorEvent(HumanAircraftShotdownByUnknownActorInfo(
-      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
-      target=HumanAircraftActor(
-        callsign="TheUser",
-        aircraft="P-39D2",
-      ),
-      attacker=UnknownActor(
-        id='foo',
-      ),
-      pos=Point3D(71903.14, 41619.023, 80.754),
-    ))
-    self.assertEqual(testee.to_primitive(), {
-      'category': 'shotdown',
-      'name': 'HumanAircraftShotdownByUnknownActorEvent',
-      'verbose_name': 'Human aircraft shot down by unknown actor',
-      'help_text': None,
-      'data': {
-        'timestamp': '2020-12-31T23:45:59',
-        'target': {
-          'callsign': 'TheUser',
-          'aircraft': 'P-39D2',
-        },
-        'attacker': {
-          'id': 'foo',
-        },
-        'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
-      },
-    })
-
-  def test_from_primitive(self):
-    testee = HumanAircraftShotdownByUnknownActorEvent(HumanAircraftShotdownByUnknownActorInfo(
-      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
-      target=HumanAircraftActor(
-        callsign="TheUser",
-        aircraft="P-39D2",
-      ),
-      attacker=UnknownActor(
-        id='foo',
-      ),
-      pos=Point3D(71903.14, 41619.023, 80.754),
-    ))
-    self.assertEqual(
-      testee,
-      HumanAircraftShotdownByUnknownActorEvent.from_primitive(testee.to_primitive()),
     )
 
 

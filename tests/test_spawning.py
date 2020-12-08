@@ -3,7 +3,6 @@ import unittest
 
 from il2fb.commons.actors import AIAircraftActor
 from il2fb.commons.actors import HumanAircraftActor
-from il2fb.commons.actors import UnknownActor
 
 from il2fb.commons.spatial import Point3D
 
@@ -20,9 +19,6 @@ from il2fb.ds.events.definitions.spawning import HumanAircraftDespawnedInfo
 
 from il2fb.ds.events.definitions.spawning import AIAircraftDespawnedEvent
 from il2fb.ds.events.definitions.spawning import AIAircraftDespawnedInfo
-
-from il2fb.ds.events.definitions.spawning import UnknownActorDespawnedEvent
-from il2fb.ds.events.definitions.spawning import UnknownActorDespawnedInfo
 
 from il2fb.ds.events.definitions import registry
 
@@ -195,51 +191,4 @@ class AIAircraftDespawnedEventTestCase(unittest.TestCase):
     self.assertEqual(
       testee,
       AIAircraftDespawnedEvent.from_primitive(testee.to_primitive()),
-    )
-
-
-class UnknownActorDespawnedEventTestCase(unittest.TestCase):
-
-  def test_derives_from_DespawningEvent(self):
-    self.assertTrue(issubclass(UnknownActorDespawnedEvent, DespawningEvent))
-
-  def test_is_registered(self):
-    self.assertEqual(
-      registry.get_class_by_name("UnknownActorDespawnedEvent"),
-      UnknownActorDespawnedEvent,
-    )
-
-  def test_to_primitive(self):
-    testee = UnknownActorDespawnedEvent(UnknownActorDespawnedInfo(
-      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
-      actor=UnknownActor(
-        id="foo",
-      ),
-      pos=Point3D(71903.14, 41619.023, 82.754),
-    ))
-    self.assertEqual(testee.to_primitive(), {
-      'category': 'despawn',
-      'name': 'UnknownActorDespawnedEvent',
-      'verbose_name': 'Unknown actor despawned',
-      'help_text': None,
-      'data': {
-        'timestamp': '2020-12-31T23:45:59',
-        'actor': {
-          'id': 'foo',
-        },
-        'pos': {'x': 71903.14, 'y': 41619.023, 'z': 82.754},
-      },
-    })
-
-  def test_from_primitive(self):
-    testee = UnknownActorDespawnedEvent(UnknownActorDespawnedInfo(
-      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
-      actor=UnknownActor(
-        id="foo",
-      ),
-      pos=Point3D(71903.14, 41619.023, 82.754),
-    ))
-    self.assertEqual(
-      testee,
-      UnknownActorDespawnedEvent.from_primitive(testee.to_primitive()),
     )
