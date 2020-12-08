@@ -34,7 +34,7 @@ class HumanOccupiedCrewMemberSeatEventTestCase(unittest.TestCase):
       target=HumanAircraftCrewMemberActor(
         callsign="TheUser",
         aircraft="P-39D2",
-        crew_index=0,
+        member_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
     ))
@@ -51,7 +51,7 @@ class HumanOccupiedCrewMemberSeatEventTestCase(unittest.TestCase):
         'target': {
           'callsign': 'TheUser',
           'aircraft': 'P-39D2',
-          'crew_index': 0,
+          'member_index': 0,
         },
         'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
       },
@@ -66,7 +66,7 @@ class HumanOccupiedCrewMemberSeatEventTestCase(unittest.TestCase):
       target=HumanAircraftCrewMemberActor(
         callsign="TheUser",
         aircraft="P-39D2",
-        crew_index=0,
+        member_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
     ))

@@ -134,9 +134,7 @@ class AIAircraftShotdownEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownEvent(AIAircraftShotdownInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -149,9 +147,7 @@ class AIAircraftShotdownEventTestCase(unittest.TestCase):
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
@@ -162,9 +158,7 @@ class AIAircraftShotdownEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownEvent(AIAircraftShotdownInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -190,9 +184,7 @@ class AIAircraftShotdownSelfEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownSelfEvent(AIAircraftShotdownInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -205,9 +197,7 @@ class AIAircraftShotdownSelfEventTestCase(unittest.TestCase):
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
@@ -218,9 +208,7 @@ class AIAircraftShotdownSelfEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownSelfEvent(AIAircraftShotdownInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -346,15 +334,11 @@ class AIAircraftShotdownByAIAircraftEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByAIAircraftEvent(AIAircraftShotdownByAIAircraftInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -367,15 +351,11 @@ class AIAircraftShotdownByAIAircraftEventTestCase(unittest.TestCase):
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'attacker': {
-          'regiment_id': 'g01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'g0100',
           'flight_index': 0,
         },
         'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
@@ -386,15 +366,11 @@ class AIAircraftShotdownByAIAircraftEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByAIAircraftEvent(AIAircraftShotdownByAIAircraftInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -420,9 +396,7 @@ class AIAircraftShotdownByBridgeEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByBridgeEvent(AIAircraftShotdownByBridgeInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=BridgeActor(
@@ -438,9 +412,7 @@ class AIAircraftShotdownByBridgeEventTestCase(unittest.TestCase):
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'attacker': {
@@ -454,9 +426,7 @@ class AIAircraftShotdownByBridgeEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByBridgeEvent(AIAircraftShotdownByBridgeInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=BridgeActor(
@@ -485,9 +455,7 @@ class AIAircraftShotdownByBuildingEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByBuildingEvent(AIAircraftShotdownByBuildingInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=BuildingActor(
@@ -503,9 +471,7 @@ class AIAircraftShotdownByBuildingEventTestCase(unittest.TestCase):
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'attacker': {
@@ -519,9 +485,7 @@ class AIAircraftShotdownByBuildingEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByBuildingEvent(AIAircraftShotdownByBuildingInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=BuildingActor(
@@ -550,9 +514,7 @@ class AIAircraftShotdownByHumanAircraftEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByHumanAircraftEvent(AIAircraftShotdownByHumanAircraftInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=HumanAircraftActor(
@@ -569,9 +531,7 @@ class AIAircraftShotdownByHumanAircraftEventTestCase(unittest.TestCase):
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'attacker': {
@@ -586,9 +546,7 @@ class AIAircraftShotdownByHumanAircraftEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByHumanAircraftEvent(AIAircraftShotdownByHumanAircraftInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=HumanAircraftActor(
@@ -618,9 +576,7 @@ class AIAircraftShotdownByMovingUnitEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByMovingUnitEvent(AIAircraftShotdownByMovingUnitInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=MovingUnitActor(
@@ -636,9 +592,7 @@ class AIAircraftShotdownByMovingUnitEventTestCase(unittest.TestCase):
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'attacker': {
@@ -652,9 +606,7 @@ class AIAircraftShotdownByMovingUnitEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByMovingUnitEvent(AIAircraftShotdownByMovingUnitInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=MovingUnitActor(
@@ -683,9 +635,7 @@ class AIAircraftShotdownByMovingUnitMemberEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByMovingUnitMemberEvent(AIAircraftShotdownByMovingUnitMemberInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=MovingUnitMemberActor(
@@ -702,9 +652,7 @@ class AIAircraftShotdownByMovingUnitMemberEventTestCase(unittest.TestCase):
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'attacker': {
@@ -719,9 +667,7 @@ class AIAircraftShotdownByMovingUnitMemberEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByMovingUnitMemberEvent(AIAircraftShotdownByMovingUnitMemberInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=MovingUnitMemberActor(
@@ -751,9 +697,7 @@ class AIAircraftShotdownByObjectEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByObjectEvent(AIAircraftShotdownByObjectInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=ObjectActor(
@@ -769,9 +713,7 @@ class AIAircraftShotdownByObjectEventTestCase(unittest.TestCase):
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'attacker': {
@@ -785,9 +727,7 @@ class AIAircraftShotdownByObjectEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByObjectEvent(AIAircraftShotdownByObjectInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=ObjectActor(
@@ -816,9 +756,7 @@ class AIAircraftShotdownByStationaryUnitEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByStationaryUnitEvent(AIAircraftShotdownByStationaryUnitInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=StationaryUnitActor(
@@ -834,9 +772,7 @@ class AIAircraftShotdownByStationaryUnitEventTestCase(unittest.TestCase):
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'attacker': {
@@ -850,9 +786,7 @@ class AIAircraftShotdownByStationaryUnitEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByStationaryUnitEvent(AIAircraftShotdownByStationaryUnitInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=StationaryUnitActor(
@@ -881,9 +815,7 @@ class AIAircraftShotdownByTreeEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByTreeEvent(AIAircraftShotdownByTreeInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -896,9 +828,7 @@ class AIAircraftShotdownByTreeEventTestCase(unittest.TestCase):
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
@@ -909,9 +839,7 @@ class AIAircraftShotdownByTreeEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByTreeEvent(AIAircraftShotdownByTreeInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -937,9 +865,7 @@ class AIAircraftShotdownByParatrooperEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByParatrooperEvent(AIAircraftShotdownByParatrooperInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -952,9 +878,7 @@ class AIAircraftShotdownByParatrooperEventTestCase(unittest.TestCase):
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
@@ -965,9 +889,7 @@ class AIAircraftShotdownByParatrooperEventTestCase(unittest.TestCase):
     testee = AIAircraftShotdownByParatrooperEvent(AIAircraftShotdownByParatrooperInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -997,9 +919,7 @@ class HumanAircraftShotdownByAIAircraftEventTestCase(unittest.TestCase):
         aircraft="P-39D2",
       ),
       attacker=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -1016,9 +936,7 @@ class HumanAircraftShotdownByAIAircraftEventTestCase(unittest.TestCase):
           'aircraft': 'P-39D2',
         },
         'attacker': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
@@ -1033,9 +951,7 @@ class HumanAircraftShotdownByAIAircraftEventTestCase(unittest.TestCase):
         aircraft="P-39D2",
       ),
       attacker=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -1580,21 +1496,15 @@ class AIAircraftShotdownByAIAircraftAndAIAircraftEventTestCase(unittest.TestCase
     testee = AIAircraftShotdownByAIAircraftAndAIAircraftEvent(AIAircraftShotdownByAIAircraftAndAIAircraftInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       assistant=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=1,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -1607,21 +1517,15 @@ class AIAircraftShotdownByAIAircraftAndAIAircraftEventTestCase(unittest.TestCase
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'attacker': {
-          'regiment_id': 'g01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'g0100',
           'flight_index': 0,
         },
         'assistant': {
-          'regiment_id': 'g01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'g0100',
           'flight_index': 1,
         },
         'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
@@ -1632,21 +1536,15 @@ class AIAircraftShotdownByAIAircraftAndAIAircraftEventTestCase(unittest.TestCase
     testee = AIAircraftShotdownByAIAircraftAndAIAircraftEvent(AIAircraftShotdownByAIAircraftAndAIAircraftInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       assistant=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=1,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -1672,15 +1570,11 @@ class AIAircraftShotdownByAIAircraftAndHumanAircraftEventTestCase(unittest.TestC
     testee = AIAircraftShotdownByAIAircraftAndHumanAircraftEvent(AIAircraftShotdownByAIAircraftAndHumanAircraftInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       assistant=HumanAircraftActor(
@@ -1697,15 +1591,11 @@ class AIAircraftShotdownByAIAircraftAndHumanAircraftEventTestCase(unittest.TestC
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'attacker': {
-          'regiment_id': 'g01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'g0100',
           'flight_index': 0,
         },
         'assistant': {
@@ -1720,15 +1610,11 @@ class AIAircraftShotdownByAIAircraftAndHumanAircraftEventTestCase(unittest.TestC
     testee = AIAircraftShotdownByAIAircraftAndHumanAircraftEvent(AIAircraftShotdownByAIAircraftAndHumanAircraftInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       assistant=HumanAircraftActor(
@@ -1758,9 +1644,7 @@ class AIAircraftShotdownByHumanAircraftAndAIAircraftEventTestCase(unittest.TestC
     testee = AIAircraftShotdownByHumanAircraftAndAIAircraftEvent(AIAircraftShotdownByHumanAircraftAndAIAircraftInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=HumanAircraftActor(
@@ -1768,9 +1652,7 @@ class AIAircraftShotdownByHumanAircraftAndAIAircraftEventTestCase(unittest.TestC
         aircraft="P-39D2",
       ),
       assistant=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -1783,9 +1665,7 @@ class AIAircraftShotdownByHumanAircraftAndAIAircraftEventTestCase(unittest.TestC
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'attacker': {
@@ -1793,9 +1673,7 @@ class AIAircraftShotdownByHumanAircraftAndAIAircraftEventTestCase(unittest.TestC
           'aircraft': 'P-39D2',
         },
         'assistant': {
-          'regiment_id': 'g01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'g0100',
           'flight_index': 0,
         },
         'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
@@ -1806,9 +1684,7 @@ class AIAircraftShotdownByHumanAircraftAndAIAircraftEventTestCase(unittest.TestC
     testee = AIAircraftShotdownByHumanAircraftAndAIAircraftEvent(AIAircraftShotdownByHumanAircraftAndAIAircraftInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=HumanAircraftActor(
@@ -1816,9 +1692,7 @@ class AIAircraftShotdownByHumanAircraftAndAIAircraftEventTestCase(unittest.TestC
         aircraft="P-39D2",
       ),
       assistant=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -1844,9 +1718,7 @@ class AIAircraftShotdownByHumanAircraftAndHumanAircraftEventTestCase(unittest.Te
     testee = AIAircraftShotdownByHumanAircraftAndHumanAircraftEvent(AIAircraftShotdownByHumanAircraftAndHumanAircraftInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=HumanAircraftActor(
@@ -1867,9 +1739,7 @@ class AIAircraftShotdownByHumanAircraftAndHumanAircraftEventTestCase(unittest.Te
       'data': {
         'timestamp': '2020-12-31T23:45:59',
         'target': {
-          'regiment_id': 'r01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'r0100',
           'flight_index': 0,
         },
         'attacker': {
@@ -1888,9 +1758,7 @@ class AIAircraftShotdownByHumanAircraftAndHumanAircraftEventTestCase(unittest.Te
     testee = AIAircraftShotdownByHumanAircraftAndHumanAircraftEvent(AIAircraftShotdownByHumanAircraftAndHumanAircraftInfo(
       timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
       target=AIAircraftActor(
-        regiment_id="r01",
-        squadron_id=0,
-        flight_id=0,
+        id="r0100",
         flight_index=0,
       ),
       attacker=HumanAircraftActor(
@@ -1928,15 +1796,11 @@ class HumanAircraftShotdownByAIAircraftAndAIAircraftEventTestCase(unittest.TestC
         aircraft="P-39D2",
       ),
       attacker=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       assistant=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=1,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -1953,15 +1817,11 @@ class HumanAircraftShotdownByAIAircraftAndAIAircraftEventTestCase(unittest.TestC
           'aircraft': 'P-39D2',
         },
         'attacker': {
-          'regiment_id': 'g01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'g0100',
           'flight_index': 0,
         },
         'assistant': {
-          'regiment_id': 'g01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'g0100',
           'flight_index': 1,
         },
         'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
@@ -1976,15 +1836,11 @@ class HumanAircraftShotdownByAIAircraftAndAIAircraftEventTestCase(unittest.TestC
         aircraft="P-39D2",
       ),
       attacker=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       assistant=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=1,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -2014,9 +1870,7 @@ class HumanAircraftShotdownByAIAircraftAndHumanAircraftEventTestCase(unittest.Te
         aircraft="P-39D2",
       ),
       attacker=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       assistant=HumanAircraftActor(
@@ -2037,9 +1891,7 @@ class HumanAircraftShotdownByAIAircraftAndHumanAircraftEventTestCase(unittest.Te
           'aircraft': 'P-39D2',
         },
         'attacker': {
-          'regiment_id': 'g01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'g0100',
           'flight_index': 0,
         },
         'assistant': {
@@ -2058,9 +1910,7 @@ class HumanAircraftShotdownByAIAircraftAndHumanAircraftEventTestCase(unittest.Te
         aircraft="P-39D2",
       ),
       attacker=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       assistant=HumanAircraftActor(
@@ -2098,9 +1948,7 @@ class HumanAircraftShotdownByHumanAircraftAndAIAircraftEventTestCase(unittest.Te
         aircraft="Bf-109F-4",
       ),
       assistant=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
@@ -2121,9 +1969,7 @@ class HumanAircraftShotdownByHumanAircraftAndAIAircraftEventTestCase(unittest.Te
           'aircraft': 'Bf-109F-4',
         },
         'assistant': {
-          'regiment_id': 'g01',
-          'squadron_id': 0,
-          'flight_id': 0,
+          'id': 'g0100',
           'flight_index': 0,
         },
         'pos': {'x': 71903.14, 'y': 41619.023, 'z': 80.754},
@@ -2142,9 +1988,7 @@ class HumanAircraftShotdownByHumanAircraftAndAIAircraftEventTestCase(unittest.Te
         aircraft="Bf-109F-4",
       ),
       assistant=AIAircraftActor(
-        regiment_id="g01",
-        squadron_id=0,
-        flight_id=0,
+        id="g0100",
         flight_index=0,
       ),
       pos=Point3D(71903.14, 41619.023, 80.754),
