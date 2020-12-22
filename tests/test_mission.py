@@ -3,16 +3,20 @@ import unittest
 
 from pathlib import Path
 
+from il2fb.commons.belligerents import BELLIGERENTS
+
 from il2fb.ds.events.definitions.base import Event
 
 from il2fb.ds.events.definitions.mission import MissionLoadedInfo
 from il2fb.ds.events.definitions.mission import MissionStartedInfo
 from il2fb.ds.events.definitions.mission import MissionEndedInfo
+from il2fb.ds.events.definitions.mission import MissionWonInfo
 
 from il2fb.ds.events.definitions.mission import MissionStatusEvent
 from il2fb.ds.events.definitions.mission import MissionLoadedEvent
 from il2fb.ds.events.definitions.mission import MissionStartedEvent
 from il2fb.ds.events.definitions.mission import MissionEndedEvent
+from il2fb.ds.events.definitions.mission import MissionWonEvent
 
 from il2fb.ds.events.definitions import registry
 
@@ -132,4 +136,42 @@ class MissionEndedEventTestCase(unittest.TestCase):
     self.assertEqual(
       testee,
       MissionEndedEvent.from_primitive(testee.to_primitive()),
+    )
+
+
+class MissionWonEventTestCase(unittest.TestCase):
+
+  def test_derives_from_MissionStatusEvent(self):
+    self.assertTrue(issubclass(MissionWonEvent, MissionStatusEvent))
+
+  def test_is_registered(self):
+    self.assertEqual(
+      registry.get_class_by_name("MissionWonEvent"),
+      MissionWonEvent,
+    )
+
+  def test_to_primitive(self):
+    testee = MissionWonEvent(MissionWonInfo(
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
+      belligerent=BELLIGERENTS.RED,
+    ))
+    self.assertEqual(testee.to_primitive(), {
+      'category': 'mission',
+      'name': 'MissionWonEvent',
+      'verbose_name': 'Mission won',
+      'help_text': None,
+      'data': {
+        'timestamp': '2020-12-31T23:45:59',
+        'belligerent': 'RED',
+      },
+    })
+
+  def test_from_primitive(self):
+    testee = MissionWonEvent(MissionWonInfo(
+      timestamp=datetime.datetime(2020, 12, 31, 23, 45, 59),
+      belligerent=BELLIGERENTS.RED,
+    ))
+    self.assertEqual(
+      testee,
+      MissionWonEvent.from_primitive(testee.to_primitive()),
     )
